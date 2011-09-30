@@ -1,85 +1,67 @@
 $ = jQuery
 
+radius = 10
+
+features = []
+
+loadFeatures = (e) ->
+  # console.log e
+  # for f in e.features
+  #   console.log(f)
+
 # console.log "Mmmh, Coffee!" if console?
 $ ->
   po = org.polymaps
-
-  radius = 10
   
-  features = []
+  map = po.map()
+  .container(document.getElementById("map").appendChild(po.svg("svg")))
+  .center({lon: 8.596677185140349, lat: 46.77841693384364})
+  .zoom(8)
+  .add(po.interact())
+  
+  map.add(po.image()
+  .url(po.url("http://{S}tile.cloudmade.com/1a1b06b230af4efdbb989ea99e9841af/998/256/{Z}/{X}/{Y}.png")
+  .hosts(["a.", "b.", "c.", ""])))
+  
+  map.add po.compass().pan("none")
   
   data = $.get "media/data/vbs-belastete-standorte.json", (data) ->
-    console.log data
+    # console.log data
     
+    i = 0
     for row in data.rows
       features.push
-        #id: "blub"
+        id: "p" + i++
+        type: "Feature"
         geometry:
-          coordinates: [row['Latitude_WGS84'], row['Longitude_WGS84']]
+          coordinates: [row['Longitude_WGS84'], row['Latitude_WGS84']]
           type: "Point"
         properties:
           data: row
     
     console.log features
-  
-  map = po.map()
-  .container(document.getElementById("map").appendChild(po.svg("svg")))
-  .center({lon: -122.20877392578124, lat: 37.65175620758778})
-  .zoom(10)
-  .add(po.interact())
-  .on("move", move)
-  .on("resize", move)
-
-  map.add(po.image()
-  .url(po.url("http://{S}tile.cloudmade.com/1a1b06b230af4efdbb989ea99e9841af/998/256/{Z}/{X}/{Y}.png")
-  .hosts(["a.", "b.", "c.", ""])))
-
-  map.add(po.geoJson()
-    #.on("load", load)
-    #.on("show", show)
-    .features([
-      {
-        "id": "stanford",
-        "properties": {
-          "html": "<img src='stanford.png' width=200 height=200>"
-        },
-        "geometry": {
-          "coordinates": [-122.16894848632812, 37.42961865341856],
-          "type": "Point"
-        }
-      },
-      {
-        "id": "berkeley",
-        "properties": {
-          "html": "<img src='berkeley.png' width=200 height=200>"
-        },
-        "geometry": {
-          "coordinates": [-122.26358225200948, 37.872092652605886],
-          "type": "Point"
-        }
-      }
-    ]))
-
-  map.add(po.compass()
-  .pan("none"))
+    
+    map.add(po.geoJson()
+      .on("load", loadFeatures)
+      .features(features))
+    
   
 
 
 
-  load = (e) ->
-    for f in e.features
-      f.element.setAttribute("r", radius)
-      f.element.addEventListener("mousedown", toggle(f.data), false)
-      f.element.addEventListener("dblclick", cancel, false)
+  # load = (
 
-  show = (e) ->
-    for f in e.features
-      tip = tips[f.data.id]
-      tip.feature = f.data
-      tip.location =
-        lat: f.data.geometry.coordinates[1],
-        lon: f.data.geometry.coordinates[0]
-      update(tip)
+      # f.element.addEventListener("mousedown", toggle(f.data), false)
+      # f.element.addEventListener("dblclick", cancel, false)
+
+  # show = (e) ->
+  #   for f in e.features
+  #     tip = tips[f.data.id]
+  #     tip.feature = f.data
+  #     tip.location =
+  #       lat: f.data.geometry.coordinates[1],
+  #       lon: f.data.geometry.coordinates[0]
+  #     update(tip)
 
   # 
   # move = () -> update(tips[id]) for id in tips
