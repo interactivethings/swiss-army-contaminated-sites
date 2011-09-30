@@ -1,3 +1,4 @@
 $ = jQuery
 
-console.log "Mmmh, Coffee!" if console?
+# console.log "Mmmh, Coffee!" if console?
+
