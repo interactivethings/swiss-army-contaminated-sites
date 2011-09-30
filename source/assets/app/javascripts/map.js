@@ -1,4 +1,4 @@
-/*var po = org.polymaps;
+var po = org.polymaps;
 
 var radius = 10, tips = {};
 
@@ -111,5 +111,3 @@ map.add(po.geoJson()
     }
     return tip.toggle;
   }
-  
-  */
