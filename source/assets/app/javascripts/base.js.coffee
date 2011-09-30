@@ -22,55 +22,60 @@ styleFeatures = po.stylist()
 styleCounties = po.stylist()
   .attr("class", "county")
 
-load = (e) ->
+loadTooltips = (e) ->
   for f in e.features
-    f.element.addEventListener("mousedown", toggle(f.data), false);
-    f.element.addEventListener("dblclick", cancel, false);
+    f.element.addEventListener("mousedown", toggleTooltips(f.data), false)
+    f.element.addEventListener("dblclick", cancelTooltips, false)
 
-show = (e) ->
+showTooltips = (e) ->
   for f in e.features
     tip = tips[f.data.id]
     tip.feature = f.data
     tip.location = {
       lat: f.data.geometry.coordinates[1],
       lon: f.data.geometry.coordinates[0]
-    };
-    update(tip)
+    }
+    updateTooltips(tip)
 
-move = () ->
-  for id in tips
-    update(tips[id])
+moveTooltips = () ->
+  for tip in tips
+    update(tips[tip])
 
-cancel = (e) ->
+cancelTooltips = (e) ->
   e.stopPropagation();
   e.preventDefault();
 
-update = (tip) ->
+updateTooltips = (tip) ->
   return if !tip.visible
   p = map.locationPoint(tip.location)
   tip.anchor.style.left = p.x - radius + "px"
   tip.anchor.style.top = p.y - radius + "px"
   $(tip.anchor).tipsy("show")
 
-toggle = (f) ->
+toggleTooltips = (f) ->
   tip = tips[f.id]
-  if !tip
-    tip = tips[f.id] = {
+  unless tip
+    tip = {
       anchor: document.body.appendChild(document.createElement("a")),
       visible: false,
       toggle: (e) ->
         tip.visible = !tip.visible
-        update(tip)
+        updateTooltips(tip)
         $(tip.anchor).tipsy(tip.visible ? "show" : "hide")
-        cancel(e)
+        cancelTooltips(e)
     }
-    tip.anchor.style.position = "absolute"
-    tip.anchor.style.visibility = "hidden"
-    tip.anchor.style.width = radius * 2 + "px"
-    tip.anchor.style.height = radius * 2 + "px"
+    tips[f.id] = tip
+    
+    $(tip.anchor).css({
+      position: 'absolute'
+      visibility: 'hidden'
+      width: radius * 2 + 'px'
+      height: radius * 2 + 'px'
+    })
+    
     $(tip.anchor).tipsy({
       html: true,
-      fallback: f.properties.html,
+      fallback: f.properties.data.Gemeinde,
       gravity: $.fn.tipsy.autoNS,
       trigger: "manual"
     })
@@ -81,8 +86,8 @@ map = po.map()
 .center({lon: 8.596677185140349, lat: 46.77841693384364})
 .zoom(8)
 .add(po.interact())
-.on("move", move)
-.on("resize", move)
+.on("move", moveTooltips)
+.on("resize", moveTooltips)
 
 map.add(po.image()
 .url(po.url("http://{S}tile.cloudmade.com/1a1b06b230af4efdbb989ea99e9841af/998/256/{Z}/{X}/{Y}.png")
@@ -107,17 +112,17 @@ $ ->
     # console.log features
     
     map.add po.geoJson()
-      .on("load", load)
       .on("load", styleFeatures)
-      .on("show", show)
+      .on("load", loadTooltips)
+      .on("show", showTooltips)
       .features(features)
     
-    map.add po.compass().pan("none")
-    
   $.get "media/maps/schweiz_gemeinden_geojson.json", (data) ->
-    console.log data
+    # console.log data
     p = po.geoJson()
       .features(data.features)
       .on("load", styleCounties)
     map.add p
-    console.log p
+    # console.log p
+    
+    map.add po.compass().pan("none")
