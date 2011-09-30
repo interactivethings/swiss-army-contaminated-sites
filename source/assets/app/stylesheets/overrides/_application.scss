@@ -22,8 +22,9 @@
   }
 
   .compass .chevron {
-    stroke: #fff;
     stroke-width: 5px;
+    stroke: #fff;
+    stroke-opacity: 1;
   }
 
   .compass .zoom .chevron {
@@ -36,6 +37,11 @@
     fill-opacity: 0.2;
   }
 
+  .compass:hover .active .direction {
+    fill: $ui-background-dark-bottom;
+    fill-opacity: 0.2;
+  }
+  
   .compass.active .active .direction {
     fill: $ui-background-dark-bottom;
     fill-opacity: 1;
