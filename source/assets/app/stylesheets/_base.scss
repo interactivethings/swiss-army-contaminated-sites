@@ -1,0 +1,74 @@
+/*
+BASE STYLESHEET
+Description:  Global variables for the Website
+Author:       Interactive Things
+Created:      100614_BW
+Updated:      110912_BW
+*/
+/* COLORS
+/////////////////////////////////////////////////////////////////*/
+$text-superdark: #000;
+$text-dark: #222;
+$text-medium: #999;
+$text-light: #bbb;
+$text-superlight: #fff;
+
+/* DEFAULTS
+/////////////////////////////////////////////////////////////////*/
+$default-border-radius: 5px;
+
+$default-box-shadow-color: rgba(0,0,0,0.4);
+$dark-box-shadow-color: rgba(0,0,0,0.9);
+$default-box-shadow-h-offset: 0px;
+$default-box-shadow-v-offset: 1px;
+$default-box-shadow-blur: 5px;
+
+$default-transition-property : all;
+$default-transition-duration : 100ms;
+$default-transition-function : ease-out;
+$default-transition-delay    : false;
+
+/* PAGES
+/////////////////////////////////////////////////////////////////*/
+$overview-work-background-light: #ECF7FF;
+$overview-work-background-dark: #DBEFFF;
+
+$overview-project-background-light: #EAF0F5;
+$overview-project-background-dark: #E8E4EE;
+$process-project-background-light: #F5F8FA;
+$process-project-background-dark: #F4F2F7;
+
+$overview-service-background-light: #EBFBF8;
+$overview-service-background-dark: #D8F8F3;
+$entrance-service-background: #F4FCFB;
+
+$overview-team-background-light: #E9FFF4;
+$overview-team-background-dark: #D6FFE9;
+$entrance-team-background: #F9FFF7;
+
+$overview-clients-background-light: #F6FFF0;
+$overview-clients-background-dark: #ECFFE2;
+$entrance-clients-background: #F9FFF7;
+
+$overview-lab-background-light: #FDFEEE;
+$overview-lab-background-dark: #FDFFDD;
+$entrance-lab-background: #FDFEF5;
+
+$teaser-background-light: #FFFFFF;
+$teaser-background-dark: #F8F8F8;
+
+/* UI
+/////////////////////////////////////////////////////////////////*/
+$ui-background-light-top: rgba(51,51,51,0.1);
+$ui-background-light-bottom: rgba(0,0,0,0.1);
+$ui-background-medium-top: rgba(51,51,51,0.5);
+$ui-background-medium-bottom: rgba(0,0,0,0.5);
+$ui-background-dark-top: rgba(51,51,51,0.9);
+$ui-background-dark-bottom: rgba(0,0,0,0.9);
+
+/* IMPORTS
+/////////////////////////////////////////////////////////////////*/
+@import "compass/utilities/general";
+@import "compass/reset/utilities";
+@import "compass/css3";
+@import "library/all";

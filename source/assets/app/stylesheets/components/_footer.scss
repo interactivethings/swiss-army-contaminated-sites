@@ -1,0 +1,13 @@
+/* FOOTER
+/////////////////////////////////////////////////////////////////*/
+#footer {
+  color: #bbb;
+  padding-top: 40px;
+  padding-bottom: 60px;
+  @include nicetype;
+  text-align: center;
+  .row .badge{
+    top: -60px;
+    right: 0px;
+  }
+}

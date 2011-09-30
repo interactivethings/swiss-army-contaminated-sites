@@ -1,0 +1,32 @@
+@mixin font-netto {
+  font-family: "ff-netto-web-1", "ff-netto-web-2", Helvetica, Arial, sans-serif;
+}
+@mixin font-teimer {
+  font-family: "teimer-web-1","teimer-web-2", Georgia, Times, serif;
+  font-style: italic;
+  font-weight: 300;
+}
+@mixin nicetype {
+  p {
+    @include font-teimer;
+    margin: 0;
+    font-size: 1.25em; 
+  }
+}
+@mixin nicelist {
+  @include font-teimer;
+  font-size: 0.8125em;
+  line-height: 1.85;
+  list-style: none;
+  padding: 0; 
+  margin-left: 0;
+  li a{
+    @include opacity(0.75);
+    text-decoration: none;
+    padding-top: 0;
+  }
+  li a:hover{
+    @include opacity(1);
+    text-decoration: underline;
+  }
+}

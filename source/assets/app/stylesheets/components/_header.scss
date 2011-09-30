@@ -1,0 +1,84 @@
+/* HEADER
+/////////////////////////////////////////////////////////////////*/
+#header {
+  background: image-url("header_bg.png") left bottom repeat-x;
+  color: $text-superlight;
+  font-size: 14px;
+  height: 60px;
+  padding: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 20;
+  .static_wrapper {
+    padding: 0 20px; 
+  }
+  #navigation{
+    position: relative;
+  }
+  a{
+    color: $text-light;
+    display: block;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 0 20px;
+    line-height: 50px;
+    @include text-shadow(rgba(0,0,0,1) 0px -1px 0px);
+    &:hover {
+      color: $text-superlight;
+      @include background-image(linear-gradient(top, #3f3f3f,#111));
+      @include text-shadow(rgba(0,0,0,0.8) 0px -1px 0px);
+    }
+  }
+  .active {
+    background: image-url("header_notch.png") 50% 100% no-repeat;
+    display: block;
+    padding: 0 0 9px 0;
+    a {
+      color: $text-superlight;
+    }
+    a:hover{
+      background: none;
+    } 
+  }
+  h1 {
+    @include inline-block;
+    float: left;
+    font-size: 14px;
+    margin: 0 40px 0 -20px;
+    &.active {
+      background: image-url("header_notch.png") 50% 100% no-repeat;
+      padding: 0 0 9px 0;
+      @include inline-block;
+    }
+    a {
+      color: $text-superlight;
+      text-transform: uppercase;
+      white-space: nowrap; 
+    } 
+  }
+  ul{
+    @include clearfix;
+    list-style: none;
+    margin: 0;
+    min-width: 280px;
+    li {
+      float: left;
+      margin: 0 0 0 0;
+      &:last-child {
+        margin: 0; 
+      } 
+    }
+  }
+  span{
+    position: absolute;
+    top: 0;
+    right: -20px;
+    padding-left: 0;
+    padding-right: 0;
+    a {
+      @include inline-block;
+      line-height: 50px; 
+    }
+  }
+}

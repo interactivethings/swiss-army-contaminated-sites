@@ -1,0 +1,40 @@
+/* INTRODUCTION
+/////////////////////////////////////////////////////////////////*/
+.intro,
+#introduction {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  @include nicetype;
+}
+#introduction{
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+/* OVERVIEW
+/////////////////////////////////////////////////////////////////*/
+#overview {
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+/* ROW BORDERS
+/////////////////////////////////////////////////////////////////*/
+.border {
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+/* ROW ALIGNMENT
+/////////////////////////////////////////////////////////////////*/
+.h2_align, .h3_align {
+  margin-top: 1.875em; 
+}
+.headline_align {
+  margin-top: 1.25em; 
+}
+.bottom_image{
+  line-height: 0;
+  position: relative;
+  img {
+    margin: 0;
+    position: absolute;
+    bottom: 0; 
+  }
+}

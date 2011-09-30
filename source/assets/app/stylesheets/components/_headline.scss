@@ -1,0 +1,21 @@
+/* HEADLINE
+/////////////////////////////////////////////////////////////////*/
+.headline {
+  margin: 20px 0 40px;
+  span {
+    display: block;
+    @include font-teimer;
+    line-height: 1;
+    margin: 0; }
+  h3 {
+    font-size: 2.25em;
+    line-height: 1;
+    margin: 0;
+    text-transform: uppercase;
+    a {
+      font-weight: inherit;
+      color: inherit; 
+      text-decoration: inherit;
+    } 
+  } 
+}

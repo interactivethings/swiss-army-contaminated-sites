@@ -1,0 +1,36 @@
+/* SETUP
+/////////////////////////////////////////////////////////////////*/
+$icons-spacing: 20px;
+@import "icons/*.png";
+
+.icon {
+  background-position: 0% 50%;
+  background-repeat: no-repeat; 
+}
+h3.icon {
+  margin: 1.1364em 0 0.686em;
+  text-indent: 30px; 
+}
+a.icon {
+  display: block;
+  text-indent: 25px; 
+}
+span.icon {
+  display: block;
+  text-indent: 25px; 
+}
+/* ICONS
+/////////////////////////////////////////////////////////////////*/
+
+.documentation {
+  @include icons-sprite("documentation_black", false, 0px, 2px); 
+}
+.technology {
+  @include icons-sprite("technology_black", false, 0px, 2px); 
+}
+.download {
+  @include icons-sprite("download_black", false, 0px, 2px); 
+}
+.white_arrow_right {
+  @include icons-sprite("arrow_right_white", false, 0px, 4px); 
+}

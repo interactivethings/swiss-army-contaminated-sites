@@ -1,0 +1,37 @@
+/* IE 6
+/////////////////////////////////////////////////////////////////*/
+.ie6 legend, .ie7 legend {
+  margin-left: -7px; 
+}
+.ie6 input {
+  vertical-align: text-bottom; 
+}
+/* IE 7
+/////////////////////////////////////////////////////////////////*/
+.ie7 input[type="checkbox"] {
+  vertical-align: baseline; 
+}
+/* IE GRID
+/////////////////////////////////////////////////////////////////*/
+.ie6 .onecol, .ie7 .onecol, .ie8 .onecol {
+  width: 4.7%; }
+.ie6 .twocol, .ie7 .twocol, .ie8 .twocol {
+  width: 13.2%; }
+.ie6 .threecol, .ie7 .threecol, .ie8 .threecol {
+  width: 22.05%; }
+.ie6 .fourcol, .ie7 .fourcol, .ie8 .fourcol {
+  width: 30.6%; }
+.ie6 .fivecol, .ie7 .fivecol, .ie8 .fivecol {
+  width: 39%; }
+.ie6 .sixcol, .ie7 .sixcol, .ie8 .sixcol {
+  width: 48%; }
+.ie6 .sevencol, .ie7 .sevencol, .ie8 .sevencol {
+  width: 56.75%; }
+.ie6 .eightcol, .ie7 .eightcol, .ie8 .eightcol {
+  width: 61.6%; }
+.ie6 .ninecol, .ie7 .ninecol, .ie8 .ninecol {
+  width: 74.05%; }
+.ie6 .tencol, .ie7 .tencol, .ie8 .tencol {
+  width: 82%; }
+.ie6 .elevencol, .ie7 .elevencol, .ie8 .elevencol {
+  width: 91.35%; }

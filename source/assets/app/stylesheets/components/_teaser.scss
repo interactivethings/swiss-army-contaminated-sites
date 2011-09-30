@@ -1,0 +1,59 @@
+/* TEASERS
+/////////////////////////////////////////////////////////////////*/
+.teasers {
+  .teaser_row{
+    @include pie-clearfix;
+    @include box-shadow();
+    height: 320px;
+    margin-bottom: 40px;
+    background: #d6d6d6;
+    .teaser {
+      position: relative;
+      display: block;
+      float: left;
+      height: 300px;
+      padding: 20px 0 0 0;
+      width: 50%;
+      &.last { width: 50% } // for Firefox!
+      background-size: cover;
+      -moz-background-size: cover;
+      &.hovered{
+        cursor: pointer;
+      }
+      .headline {
+        color:#fff;
+        span {
+          margin: 0 20px 0 22px; 
+        }
+        h3 {
+          margin: 0 20px 20px; 
+        } 
+      }
+      a {
+        color: inherit;
+        text-decoration: inherit;
+      }
+      .button{
+        @include ui;
+        @include opacity(0);
+        color: #fff;
+        position: absolute;
+        bottom: 20px;
+        left: 0px;
+        min-width: 30px;
+        text-align: center;
+        padding: 5px 15px;
+        & a {
+          color: #fff;
+          text-decoration: none;
+        }
+      }
+      &:hover{
+        .button{
+          @include opacity(1);
+          left: 20px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+/* SETUP
+/////////////////////////////////////////////////////////////////*/
+$icons-spacing: 20px;
+@import "badges/*.png";
+
+.badge,
+.badge_small{
+  min-height: 0 !important;
+  position: absolute;
+  top: -20px;
+  right: 20px;
+  z-index: 10;
+  .headline {
+    display: none; 
+  }
+}
+.badge {
+  height: 130px;
+  width: 130px;
+}
+.badge_small {
+  height: 60px;
+  width: 60px;
+}
+.row .badge{
+  right: -18px;
+}
+.card .badge_small{
+  right: -18px
+}
+/* BADGES
+/////////////////////////////////////////////////////////////////*/
+#badge_madeby {
+  @include badges-sprite(madeby);
+}
+#badge_designedby {
+  @include badges-sprite(designedby);
+}

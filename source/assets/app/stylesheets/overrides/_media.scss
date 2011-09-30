@@ -1,0 +1,300 @@
+/* LARGE SCREENS
+/////////////////////////////////////////////////////////////////*/
+@media (min-width: 1440px) {
+  .showcase .slide, .works .slide {
+    background-size: cover;
+    -moz-background-size: cover; 
+  }
+}
+@media (max-width: 1440px) {
+  .lab{
+    #entrance{
+      background-position: left bottom; 
+    }
+  }
+}
+
+/* MEDIUM SCREENS
+/////////////////////////////////////////////////////////////////*/
+@media (max-width: 1140px) {
+  #home_showcase_raiffeisen {
+    .headline { margin-top: 150px !important; } 
+  }
+  
+  #work_showcase_raiffeisen {
+    .headline { margin-top: 270px !important; } 
+  }
+}
+
+/* SMALL SCREENS
+/////////////////////////////////////////////////////////////////*/
+@media (max-width: 800px) {
+  .row, .body, .container {
+    width: 100%;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-left: 0px;
+    padding-right: 0px; }
+  .onecol, .twocol, .threecol, .fourcol, .fivecol, .sixcol, .sevencol, .eightcol, .ninecol, .tencol, .elevencol, .twelvecol {
+    width: auto;
+    float: none;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-left: 20px;
+    padding-right: 20px; }
+  body {
+    padding-top: 0;
+  }
+  #header {
+    background-image: image-url("header_double_bg.png");
+    position: relative;
+    height: auto;
+    a{
+      padding: 0 20px;
+      &:hover{
+        background: none;
+      }
+    }
+    #navigation {
+      padding-left: 0;
+      padding-right: 0;
+      h1{
+        float: none;
+        margin-left: 0;
+        margin-right: 0;
+        padding: 0;
+        display: block;
+        background: none;
+      }
+    }
+    span.active {
+      background: none;
+    }
+    .static_wrapper {
+      padding: 0; 
+    }
+    span{
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding-left: 0;
+      padding-right: 0;
+      span{
+        margin: 0;
+      }
+    }
+    ul {
+      padding: 0 0 1px; 
+      height: 60px;
+    } 
+  }
+  #footer {
+    ul {
+      li {
+        float: none;
+        margin: 0 0 10px 0; 
+      } 
+    }
+    a {
+      display: block;
+    }
+    ul li, .twitter {
+      float: none;
+    }
+  }
+  .row .badge{
+    right: 20px;
+  }
+  .bottom_image{
+    line-height: 0;
+    min-height: 0 !important;
+    img{
+      position: relative;
+    }
+  }
+  .teasers .teaser_row{
+    height: auto;
+  }
+  .teasers img, .teasers .teaser_row .teaser, .one_teaser_row {
+    width: 100% !important;
+  }
+  
+  .work{
+    .showcase{
+      .slide{
+        .overlay {
+          height: auto;
+          img {
+            position: relative;
+            margin: 0 auto;
+            bottom: 0px; 
+          }
+        }
+      }
+    }
+  }
+  
+  #home_showcase_raiffeisen {
+    .headline { margin-top: 80px !important; } 
+  }
+  
+  #work_showcase_raiffeisen {
+    .headline { margin-top: 80px !important; } 
+  }
+  
+  .team {
+    #overview{
+      .row{
+        padding-bottom: 0;
+      }
+      div {
+        min-height: 0px; 
+      }
+    }
+    .person {
+      div {
+        min-height: 0; 
+      }
+      .person_links{
+        margin-top: 0 !important;
+      }
+    }
+  }
+  
+  .service{
+    .approach h2,
+    .expertise h2{
+      margin-bottom: 1.1em;
+    }
+  }
+  
+  .clients{
+    .clients_list{
+      width: auto;
+      padding-left: 20px;
+      padding-right: 20px;
+      .fourcol{
+        padding-left: 0;
+        padding-right: 0;
+        margin-right: 3.8%;
+        float: left;
+        width: 30.8%;
+      }
+      .last{
+        margin-right: 0;
+      }
+    }
+  }
+  
+  .lab{
+    #overview{
+      .row{
+        background-position: 50% 200%;
+      }
+      .second{
+        margin-top: 0;
+      }
+    }
+    #entrance{
+      background-position: left bottom; 
+      #lab_datavisualization_images {
+        margin: 40px 0 0;
+      }
+    }
+  }
+  
+  .contact{
+    #contact_box {
+      margin-top: 82px;
+      margin-bottom: 152px;
+    }
+  }
+}
+/* LARGE MOBILE
+/////////////////////////////////////////////////////////////////*/
+@media (max-width: 640px) {
+  .clients{
+    .clients_list{
+      width: 100%;
+      margin-left: 0px;
+      margin-right: 0px;
+      padding-left: 0px;
+      padding-right: 0px;
+      .fourcol{
+        width: auto;
+        float: none;
+        margin-left: 0px;
+        margin-right: 0px;
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+    }
+  }
+}
+/* MOBILE
+/////////////////////////////////////////////////////////////////*/
+@media (max-width: 400px) {
+  #header {
+    #navigation {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+    a { padding: 0 10px; }
+    span { right: 10px; }
+  }
+  .badge {
+    display: none;
+  }
+  .contact {
+    background-position: -320px 175px;
+    #contact_box {
+      display: none;
+    }
+    #footer {
+      margin: 52px 0;
+      display: block;
+    }
+  }
+}
+/* ORENTATION
+/////////////////////////////////////////////////////////////////*/
+@media all and (orientation:portrait) {
+}
+@media all and (orientation:landscape) {
+}
+/* PRINT
+/////////////////////////////////////////////////////////////////*/
+@media print {
+  * {
+    background: transparent !important;
+    color: #444 !important;
+    text-shadow: none !important;
+  }
+  a {
+    color: #444 !important;
+    text-decoration: underline;
+    &:visited {
+      color: #444 !important;
+      text-decoration: underline; }
+    &:after {
+      content: " (" attr(href) ")"; } }
+  abbr:after {
+    content: " (" attr(title) ")"; }
+  pre, blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid; }
+  thead {
+    display: table-header-group; }
+  /* css-discuss.incutio.com/wiki/Printing_Tables */
+  tr, img {
+    page-break-inside: avoid; }
+  @page {
+    margin: 0.5cm; }
+
+  p, h2, h3 {
+    orphans: 3;
+    widows: 3; }
+  h2, h3 {
+    page-break-after: avoid; 
+  } 
+}
