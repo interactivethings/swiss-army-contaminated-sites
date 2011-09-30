@@ -81,6 +81,12 @@
   .layer circle.vorgehen_8 {
     fill: orange;
   }
+  
+  .layer .county {
+    fill-opacity: 0;
+    stroke: red;
+    stroke-width: 1px;
+  }
 
   .tipsy-inner {
     padding: 3px;

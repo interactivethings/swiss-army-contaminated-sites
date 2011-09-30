@@ -17,6 +17,9 @@ styleFeatures = po.stylist()
   .attr("r", radius)
   .attr("class", (d) -> "vorgehen_#{d.properties.data['Vorgehen_Code']}")
 
+styleCounties = po.stylist()
+  .attr("class", "county")
+
 $ ->
   
   map = po.map()
@@ -54,8 +57,12 @@ $ ->
     
   $.get "media/maps/schweiz_gemeinden_geojson.json", (data) ->
     console.log data
-    map.add po.geoJson()
-      .features(data)
+    p = po.geoJson()
+      .features(data.features)
+      .on("load", styleCounties)
+    map.add p
+    console.log p
+      
 
 
 
