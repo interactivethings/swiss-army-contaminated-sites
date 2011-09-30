@@ -29,7 +29,7 @@ $ ->
   .url(po.url("http://{S}tile.cloudmade.com/1a1b06b230af4efdbb989ea99e9841af/998/256/{Z}/{X}/{Y}.png")
   .hosts(["a.", "b.", "c.", ""])))
   
-  data = $.get "media/data/vbs-belastete-standorte.json", (data) ->
+  $.get "media/data/vbs-belastete-standorte.json", (data) ->
     # console.log data
     
     i = 0
@@ -52,7 +52,10 @@ $ ->
     map.add po.compass().pan("none")
     
     
-  
+  $.get "media/maps/schweiz_gemeinden_geojson.json", (data) ->
+    console.log data
+    map.add po.geoJson()
+      .features(data)
 
 
 
