@@ -1,4 +1,4 @@
-var po = org.polymaps;
+/*var po = org.polymaps;
 
 var radius = 10, tips = {};
 
@@ -17,8 +17,8 @@ map.add(po.image()
 .hosts(["a.", "b.", "c.", ""])));
 
 map.add(po.geoJson()
-.on("load", load)
-.on("show", show)
+//.on("load", load)
+//.on("show", show)
 .features([
   {
     "id": "stanford",
@@ -111,3 +111,5 @@ map.add(po.geoJson()
     }
     return tip.toggle;
   }
+  
+  */
