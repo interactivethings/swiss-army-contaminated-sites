@@ -1,15 +1,23 @@
 $ = jQuery
+po = org.polymaps
 
-# console.log "Mmmh, Coffee!" if console?
-
-radius = 10
+radius = 5
 
 features = []
 
-loadFeatures = (e) ->
+# loadFeatures = (e) ->
+#   console.log e.features
+#   for f in e.features
+#     f.element.setAttribute("r", radius)
+#     if f.data.properties.data['Vorgehen_Code'] is "3"
+#       $(f.element).addClass("green")
+#       console.log("green")
+
+styleFeatures = po.stylist()
+  .attr("r", radius)
+  .attr("class", (d) -> "vorgehen_#{d.properties.data['Vorgehen_Code']}")
 
 $ ->
-  po = org.polymaps
   
   map = po.map()
   .container(document.getElementById("map").appendChild(po.svg("svg")))
@@ -20,8 +28,6 @@ $ ->
   map.add(po.image()
   .url(po.url("http://{S}tile.cloudmade.com/1a1b06b230af4efdbb989ea99e9841af/998/256/{Z}/{X}/{Y}.png")
   .hosts(["a.", "b.", "c.", ""])))
-  
-  map.add po.compass().pan("none")
   
   data = $.get "media/data/vbs-belastete-standorte.json", (data) ->
     # console.log data
@@ -37,11 +43,14 @@ $ ->
         properties:
           data: row
     
-    console.log features
+    # console.log features
     
-    map.add(po.geoJson()
-      .on("load", loadFeatures)
-      .features(features))
+    map.add po.geoJson()
+      .on("load", styleFeatures)
+      .features(features)
+    
+    map.add po.compass().pan("none")
+    
     
   
 

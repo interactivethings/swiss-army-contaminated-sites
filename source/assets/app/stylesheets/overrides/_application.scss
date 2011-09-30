@@ -42,10 +42,38 @@
   }
   
   .layer circle {
-    fill: lightcoral;
+    fill: white;
     fill-opacity: .5;
-    stroke: brown;
-    stroke-width: 1.5px;
+    // stroke: brown;
+    //    stroke-width: 1.5px;
+  }
+  
+  .layer circle.vorgehen_0 {
+    fill: #333;
+  }
+  
+  .layer circle.vorgehen_2 {
+    fill: green;
+  }
+  
+  .layer circle.vorgehen_3 {
+    fill: blue;
+  }
+  
+  .layer circle.vorgehen_5 {
+    fill: orange;
+  }
+  
+  .layer circle.vorgehen_6 {
+    fill: orange;
+  }
+  
+  .layer circle.vorgehen_7 {
+    fill: orange;
+  }
+
+  .layer circle.vorgehen_8 {
+    fill: orange;
   }
 
   .tipsy-inner {
