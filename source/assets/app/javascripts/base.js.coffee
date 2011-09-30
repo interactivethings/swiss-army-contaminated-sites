@@ -1,15 +1,13 @@
 $ = jQuery
 
+# console.log "Mmmh, Coffee!" if console?
+
 radius = 10
 
 features = []
 
 loadFeatures = (e) ->
-  # console.log e
-  # for f in e.features
-  #   console.log(f)
 
-# console.log "Mmmh, Coffee!" if console?
 $ ->
   po = org.polymaps
   
