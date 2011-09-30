@@ -5,6 +5,7 @@ $ ->
   po = org.polymaps
 
   radius = 10
+  tips = {}
 
   map = po.map()
   .container(document.getElementById("map").appendChild(po.svg("svg")))
@@ -17,13 +18,10 @@ $ ->
   map.add(po.image()
   .url(po.url("http://{S}tile.cloudmade.com/1a1b06b230af4efdbb989ea99e9841af/998/256/{Z}/{X}/{Y}.png")
   .hosts(["a.", "b.", "c.", ""])))
-  
-  map.add(po.compass()
-  .pan("none"))
-  
+
   map.add(po.geoJson()
-    .on("load", load)
-    .on("show", show)
+    #.on("load", load)
+    #.on("show", show)
     .features([
       {
         "id": "stanford",
@@ -47,10 +45,11 @@ $ ->
       }
     ]))
 
-  
+  map.add(po.compass()
+  .pan("none"))
   
 
-  tips = {}
+
 
   load = (e) ->
     for f in e.features
