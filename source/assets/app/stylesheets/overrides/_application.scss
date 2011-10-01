@@ -16,11 +16,13 @@
       }
     }
   }
-  
-  svg {
-    display: block;
-    overflow: hidden;
-    height: 600px;
+  #map{
+    position: relative;
+    svg {
+      display: block;
+      overflow: hidden;
+      height: 600px;
+    }
   }
   
 }

@@ -86,25 +86,34 @@
 .legend_overlay{
   @include pie-clearfix;
   @include background-image(linear-gradient(top, $ui-background-dark-top, $ui-background-dark-bottom));
+  @include border-radius(15px);
+  @include box-shadow();
+  margin: 0 2%;
+  width: 96%;
+  padding: 0;
+  position: fixed;
   bottom: 20px;
-  margin: 0 20px;
-  padding: 5px;
-  position: absolute;
   z-index: 10;
   span.label{
     color: $text-superlight;
     display: block;
     float: left;
+    margin: 0.5%;
+    text-align: center;
   }
-  .legend{
+  ul.legend{
     @include pie-clearfix;
-    margin: 0 0 0 150px;
+    float: left;
+    margin: 0.5%;
+    padding: 0;
     li{
       float: left;
       font-size: 12px;
       list-style: none;
       span.cause {
-        background: #f90;
+        @include box-sizing(border-box);
+        border-right: 1px solid #000;
+        background: #fff;
         display: block;
         text-align: center;
         padding: 2px 0px 4px;
@@ -117,6 +126,72 @@
         padding: 4px 15px 4px;
         text-align: center;
         text-decoration: none;
+      }
+      &:first-child span.cause{
+        @include border-left-radius(12px);
+      }
+      &:last-child span.cause{
+        @include border-right-radius(12px);
+        border-right: none;
+      }
+    }
+  }
+  &#locations{
+    span.label{
+      width: 100% / 7 * 1 - 1%;
+    }
+    ul.legend{
+      width: 100% / 7 * 6 - 1%;
+      li{
+        width: 100% / 6 * 1;
+        &:nth-child(1) span.cause{
+          background: #F8D6A2;
+        }
+        &:nth-child(2) span.cause{
+          background: #F5C174;
+        }
+        &:nth-child(3) span.cause{
+          background: #F0A849;
+        }
+        &:nth-child(4) span.cause{
+          background: #EF8A29;
+        }
+        &:nth-child(5) span.cause{
+          background: #EA5B26;
+        }
+        &:nth-child(6) span.cause{
+          background: #E72524;
+        }
+      }
+    }
+  }
+  &#counties{
+    bottom: 90px;
+    span.label{
+      width: 100% / 7 * 1 - 1%;
+    }
+    ul.legend{
+      width: 100% / 7 * 6 - 1%;
+      li{
+        width: 100% / 6 * 1;
+        &:nth-child(1) span.cause{
+          background: #F8D6A2;
+        }
+        &:nth-child(2) span.cause{
+          background: #F5C174;
+        }
+        &:nth-child(3) span.cause{
+          background: #F0A849;
+        }
+        &:nth-child(4) span.cause{
+          background: #EF8A29;
+        }
+        &:nth-child(5) span.cause{
+          background: #EA5B26;
+        }
+        &:nth-child(6) span.cause{
+          background: #E72524;
+        }
       }
     }
   }
