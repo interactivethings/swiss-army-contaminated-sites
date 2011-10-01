@@ -60,6 +60,17 @@ For our visualization we needed the data as [GeoJSON](http://geojson.org/), whic
 
 After this, the GeoJSON was ready to be used for our visualization.
 
+Vorgehen-Codes
+==============
+
+0: Nicht definiert
+2: mit Abfällen belastet, kein dringender Untersuchungsbedarf
+3: Untersuchungsbedarf: Voruntersuchung erforderlich
+5: mit Abfällen belastet, kein dringender Untersuchungs- bzw. Sanierungsbedarf
+6: Untersuchungsbedarf: Detailuntersuchung erforderlich
+7: Umwelteinwirkungen: der Standort muss saniert werden
+8: teilsaniert: Umwelteinwirkungen unterbunden oder reduziert
+
 Changelog
 =========
 
