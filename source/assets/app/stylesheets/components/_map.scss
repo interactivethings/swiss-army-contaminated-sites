@@ -56,7 +56,6 @@ $YlOrRd-6: rgba(189, 0, 38, 1);
     
     #map.show_counties & {
       fill: black;
-      r: 1;
     }
     
   }
@@ -184,7 +183,7 @@ $YlOrRd-6: rgba(189, 0, 38, 1);
     }
   }
   &#counties{
-    bottom: 90px;
+    bottom: 45px;
     span.label{
       width: 100% / 7 * 1 - 1%;
     }
