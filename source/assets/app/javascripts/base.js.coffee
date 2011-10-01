@@ -2,7 +2,6 @@ $ = jQuery
 po = org.polymaps
 radius = 5
 tips = {}
-features = []
 
 # Polymaps Stylist Event Handlers
 
@@ -35,8 +34,8 @@ moveTooltips = () ->
     updateTooltip(tips[tip])
 
 cancelTooltip = (e) ->
-  e.stopPropagation();
-  e.preventDefault();
+  e.stopPropagation()
+  e.preventDefault()
 
 updateTooltip = (tip) ->
   return unless tip.visible
@@ -76,6 +75,23 @@ toggleTooltip = (f) ->
     })
   tip.toggle
 
+# View change
+
+showCounties = (e) ->
+  $('#show_locations').removeClass "active"
+  $('#show_counties').addClass "active"
+  $('#map').removeClass("show_locations").addClass("show_counties")
+  e.stopPropagation()
+  e.preventDefault()
+  
+showLocations = (e) ->
+  $('#show_locations').addClass "active"
+  $('#show_counties').removeClass "active"
+  $('#map').removeClass("show_counties").addClass("show_locations")
+  e.stopPropagation()
+  e.preventDefault()
+  
+
 # Setup map
 map = po.map()
 .container(document.getElementById("map").appendChild(po.svg("svg")))
@@ -97,36 +113,41 @@ $ ->
     #height: $(document).height() - map_offset.top
   })
   
-  # Load points, then add them to the map
-  $.get "media/data/vbs-belastete-standorte.json", (data) ->
-    # console.log data
-    
-    i = 0
-    for row in data.rows
-      features.push
-        id: "p" + i++
-        type: "Feature"
-        geometry:
-          coordinates: [row['Longitude_WGS84'], row['Latitude_WGS84']]
-          type: "Point"
-        properties:
-          data: row
-    
-    # console.log features
+  # Load county shapes, then add them to the map
+  $.get "media/maps/schweiz_gemeinden_geojson.json", (countyData) ->
     
     map.add po.geoJson()
-      .on("load", styleFeatures)
-      .on("load", loadTooltips)
-      .on("show", showTooltips)
-      .features(features)
-  
-  # Load county shapes, then add them to the map
-  $.get "media/maps/schweiz_gemeinden_geojson.json", (data) ->
-    # console.log data
-    p = po.geoJson()
-      .features(data.features)
+      .features(countyData.features)
       .on("load", styleCounties)
-    map.add p
     # console.log p
     
-    map.add po.compass().pan("none")
+    # Load points, then add them to the map
+    $.get "media/data/vbs-belastete-standorte.json", (locationData) ->
+      # console.log data
+    
+      i = 0
+      features = []
+      for row in locationData.rows
+        features.push
+          id: "p" + i++
+          type: "Feature"
+          geometry:
+            coordinates: [row['Longitude_WGS84'], row['Latitude_WGS84']]
+            type: "Point"
+          properties:
+            data: row
+            
+      map.add po.geoJson()
+        .on("load", styleFeatures)
+        .on("load", loadTooltips)
+        .on("show", showTooltips)
+        .features(features)
+        
+      map.add po.compass().pan("none")
+      
+  
+  
+  # Set up view change event handlers
+  
+  $('#show_locations').click(showLocations)
+  $('#show_counties').click(showCounties)
