@@ -1,19 +1,10 @@
 $ = jQuery
 po = org.polymaps
-
 radius = 5
-
 tips = {}
-
 features = []
 
-# loadFeatures = (e) ->
-#   console.log e.features
-#   for f in e.features
-#     f.element.setAttribute("r", radius)
-#     if f.data.properties.data['Vorgehen_Code'] is "3"
-#       $(f.element).addClass("green")
-#       console.log("green")
+# Polymaps Stylist Event Handlers
 
 styleFeatures = po.stylist()
   .attr("r", radius)
@@ -21,6 +12,8 @@ styleFeatures = po.stylist()
 
 styleCounties = po.stylist()
   .attr("class", "county")
+
+# Tooltip Event Handlers
 
 loadTooltips = (e) ->
   for f in e.features
@@ -83,6 +76,7 @@ toggleTooltip = (f) ->
     })
   tip.toggle
 
+# Setup map
 map = po.map()
 .container(document.getElementById("map").appendChild(po.svg("svg")))
 .center({lon: 8.596677185140349, lat: 46.77841693384364})
@@ -91,15 +85,19 @@ map = po.map()
 .on("move", moveTooltips)
 .on("resize", moveTooltips)
 
+# Add map background tiles
 map.add(po.image()
 .url(po.url("http://{S}tile.cloudmade.com/1a1b06b230af4efdbb989ea99e9841af/998/256/{Z}/{X}/{Y}.png")
 .hosts(["a.", "b.", "c.", ""])))
 
+# DOM Loaded:
 $ ->
   map_offset = $("#map").offset()
   $("#map").css({
     #height: $(document).height() - map_offset.top
   })
+  
+  # Load points, then add them to the map
   $.get "media/data/vbs-belastete-standorte.json", (data) ->
     # console.log data
     
@@ -121,7 +119,8 @@ $ ->
       .on("load", loadTooltips)
       .on("show", showTooltips)
       .features(features)
-    
+  
+  # Load county shapes, then add them to the map
   $.get "media/maps/schweiz_gemeinden_geojson.json", (data) ->
     # console.log data
     p = po.geoJson()
