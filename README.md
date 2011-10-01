@@ -6,11 +6,7 @@ This is our submission.
 To Do
 =====
 tooltips content
-tooltips position
 choropleth colors
-dots colors
-legend
-toggle
 
 Data Sources
 ============

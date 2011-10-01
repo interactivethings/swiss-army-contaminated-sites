@@ -105,7 +105,7 @@ map = po.map()
 
 # Add map background tiles
 map.add(po.image()
-.url(po.url("http://{S}tile.cloudmade.com/1a1b06b230af4efdbb989ea99e9841af/998/256/{Z}/{X}/{Y}.png")
+.url(po.url("http://{S}tile.cloudmade.com/1a1b06b230af4efdbb989ea99e9841af/27783/256/{Z}/{X}/{Y}.png")
 .hosts(["a.", "b.", "c.", ""])))
 
 # DOM Loaded:
