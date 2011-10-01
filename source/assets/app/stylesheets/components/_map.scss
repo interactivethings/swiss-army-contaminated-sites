@@ -28,9 +28,9 @@ $YlOrRd-6: rgba(189, 0, 38, 1);
       fill-opacity: 1;
     }
   }
-  circle {
+  path {
     fill: white;
-    fill-opacity: .5;
+    fill-opacity: .8;
     
     &.vorgehen_0 {
       fill: $YlOrRd-1;
@@ -58,6 +58,11 @@ $YlOrRd-6: rgba(189, 0, 38, 1);
       fill: black;
     }
     
+  }
+  
+  .icon path {
+    fill: black !important;
+    fill-opacity: 1 !important;
   }
 }
 
