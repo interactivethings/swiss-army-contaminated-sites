@@ -1,8 +1,12 @@
 /* APPLICATION
 /////////////////////////////////////////////////////////////////*/
 .application{
-  #introduction p{
-    float: left;
+  #introduction{
+    z-index: 100001;
+    p{
+      float: left;
+      position: relative;
+    }
   }
   .filter{
     float: right;
@@ -16,11 +20,13 @@
       }
     }
   }
-  
-  svg {
-    display: block;
-    overflow: hidden;
-    height: 600px;
+  #map{
+    position: relative;
+    svg {
+      display: block;
+      overflow: hidden;
+      height: 600px;
+    }
   }
   
 }

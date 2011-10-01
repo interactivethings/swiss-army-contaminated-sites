@@ -1,38 +1,71 @@
 /* OVERLAYS
 /////////////////////////////////////////////////////////////////*/
+/* COLORS
+/////////////////////////////////////////////////////////////////*/
+$reds-1: rgba(254, 229, 217, 1);
+$reds-2: rgba(252, 187, 161, 1);
+$reds-3: rgba(252, 146, 114, 1);
+$reds-4: rgba(251, 106, 74, 1);
+$reds-5: rgba(222, 45, 38, 1);
+$reds-6: rgba(165, 15, 21, 1);
+
+$YlOrRd-1: rgba(255, 255, 178, 1);
+$YlOrRd-2: rgba(254, 217, 118, 1);
+$YlOrRd-3: rgba(254, 178, 76, 1);
+$YlOrRd-4: rgba(253, 141, 60, 1);
+$YlOrRd-5: rgba(240, 59, 32, 1);
+$YlOrRd-6: rgba(189, 0, 38, 1);
+
 .layer {
   .county {
     fill-opacity: 0;
     stroke: #000;
     stroke-width: 1px;
-    stroke-opacity: .25;
+    stroke-opacity: .1;
+    
+    #map.show_counties & {
+      fill: white;
+      fill-opacity: 1;
+    }
   }
-  circle {
+  path {
     fill: white;
-    fill-opacity: .5;
+    fill-opacity: .8;
+    
     &.vorgehen_0 {
-      fill: #87C5F8;
+      fill: $YlOrRd-1;
       }
     &.vorgehen_2 {
-      fill: #89E0CF;
+      fill: $YlOrRd-2;
     }
     &.vorgehen_3 {
-      fill: #8AF8B0;
+      fill: $YlOrRd-3;
     }
     &.vorgehen_5 {
-      fill: #C6F59D;
+      fill: $YlOrRd-4;
     }
     &.vorgehen_6 {
-      fill: #FAF591;
+      fill: $YlOrRd-5;
     }
     &.vorgehen_7 {
-      fill: #EF9B78;
+      fill: $YlOrRd-6;
     }
     &.vorgehen_8 {
-      fill: #E96975;
+      fill: $YlOrRd-6;
     }
+    
+    #map.show_counties & {
+      fill: black;
+    }
+    
+  }
+  
+  .icon path {
+    fill: black !important;
+    fill-opacity: 1 !important;
   }
 }
+
 /* ZOOM INTERFACE
 /////////////////////////////////////////////////////////////////*/
 .compass .back {
@@ -68,32 +101,51 @@
 /* TOOLTIPS
 /////////////////////////////////////////////////////////////////*/
 .tipsy-inner {
-  padding: 10 10px 12px;
+  text-align: left !important;
+  font-size: 14px !important;
+  max-width: 300px !important;
+  h3{
+    line-height: 1.25;
+    margin: .5em 10px;
+  }
+  p{
+    line-height: 1.25;
+    margin: 0  10px 1em;
+  }
 }
 /* LEGEND
 /////////////////////////////////////////////////////////////////*/
 .legend_overlay{
   @include pie-clearfix;
   @include background-image(linear-gradient(top, $ui-background-dark-top, $ui-background-dark-bottom));
+  @include border-radius(15px);
+  @include box-shadow();
+  margin: 0 2%;
+  width: 96%;
+  padding: 0;
+  position: fixed;
   bottom: 20px;
-  margin: 0 20px;
-  padding: 5px;
-  position: absolute;
   z-index: 10;
   span.label{
     color: $text-superlight;
     display: block;
     float: left;
+    margin: 0.5%;
+    text-align: center;
   }
-  .legend{
+  ul.legend{
     @include pie-clearfix;
-    margin: 0 0 0 150px;
+    float: left;
+    margin: 0.5%;
+    padding: 0;
     li{
       float: left;
       font-size: 12px;
       list-style: none;
       span.cause {
-        background: #f90;
+        @include box-sizing(border-box);
+        border-right: 1px solid #000;
+        background: #fff;
         display: block;
         text-align: center;
         padding: 2px 0px 4px;
@@ -106,6 +158,74 @@
         padding: 4px 15px 4px;
         text-align: center;
         text-decoration: none;
+      }
+      &:first-child span.cause{
+        @include border-left-radius(12px);
+      }
+      &:last-child span.cause{
+        @include border-right-radius(12px);
+        border-right: none;
+      }
+    }
+  }
+  &#locations{
+    display: none;
+    span.label{
+      width: 100% / 7 * 1 - 1%;
+    }
+    ul.legend{
+      width: 100% / 7 * 6 - 1%;
+      li{
+        width: 100% / 6 * 1;
+        &:nth-child(1) span.cause{
+          background: $YlOrRd-1;
+        }
+        &:nth-child(2) span.cause{
+          background: $YlOrRd-2;
+        }
+        &:nth-child(3) span.cause{
+          background: $YlOrRd-3;
+        }
+        &:nth-child(4) span.cause{
+          background: $YlOrRd-4;
+        }
+        &:nth-child(5) span.cause{
+          background: $YlOrRd-5;
+        }
+        &:nth-child(6) span.cause{
+          background: $YlOrRd-6;
+        }
+      }
+    }
+  }
+  &#counties{
+    display: none;
+    bottom: 46px;
+    span.label{
+      width: 100% / 7 * 1 - 1%;
+    }
+    ul.legend{
+      width: 100% / 7 * 6 - 1%;
+      li{
+        width: 100% / 6 * 1;
+        &:nth-child(1) span.cause{
+          background: $YlOrRd-1;
+        }
+        &:nth-child(2) span.cause{
+          background: $YlOrRd-2;
+        }
+        &:nth-child(3) span.cause{
+          background: $YlOrRd-3;
+        }
+        &:nth-child(4) span.cause{
+          background: $YlOrRd-4;
+        }
+        &:nth-child(5) span.cause{
+          background: $YlOrRd-5;
+        }
+        &:nth-child(6) span.cause{
+          background: $YlOrRd-6;
+        }
       }
     }
   }

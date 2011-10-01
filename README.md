@@ -5,12 +5,7 @@ This is our submission.
 
 To Do
 =====
-tooltips content
-tooltips position
 choropleth colors
-dots colors
-legend
-toggle
 
 Data Sources
 ============
@@ -67,6 +62,17 @@ source/data_processing/adjust_data.py is a Python script that checks source/medi
  * Duplicate sites: the difference of all sites that have the same `Objekt_Nr` is printed field by field.
  * Different municipal names: sites refer to the `GMDE` field of a municipal via their `Gemeinde_Nr_BfS` field. They also mention the `properties.NAME` field name of the municipal via the `Gemeinde` field. The script prints each instance where the latter one differ. Note: the convertion process of the county borders presumably breaks the German umlaute. so we have many false positives here.
  * Missing municpials: If a site mentions a `Gemeinde_Nr_BfS` for which there is no `GMDE` this is reported as a missing municipal. Indeed, these municpials are not mentioned in the original data from admin.ch
+
+Vorgehen-Codes
+==============
+
+0: Nicht definiert
+2: mit Abfällen belastet, kein dringender Untersuchungsbedarf
+3: Untersuchungsbedarf: Voruntersuchung erforderlich
+5: mit Abfällen belastet, kein dringender Untersuchungs- bzw. Sanierungsbedarf
+6: Untersuchungsbedarf: Detailuntersuchung erforderlich
+7: Umwelteinwirkungen: der Standort muss saniert werden
+8: teilsaniert: Umwelteinwirkungen unterbunden oder reduziert
 
 Changelog
 =========
