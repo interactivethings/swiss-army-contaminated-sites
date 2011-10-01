@@ -85,8 +85,8 @@ showCounties = (e) ->
   e.preventDefault()
   
 showLocations = (e) ->
-  $('#show_locations').addClass "active"
   $('#show_counties').removeClass "active"
+  $('#show_locations').addClass "active"
   $('#map').removeClass("show_counties").addClass("show_locations")
   e.stopPropagation()
   e.preventDefault()

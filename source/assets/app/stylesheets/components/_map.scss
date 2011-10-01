@@ -6,6 +6,11 @@
     stroke: #000;
     stroke-width: 1px;
     stroke-opacity: .25;
+    
+    #map.show_counties & {
+      fill: white;
+      fill-opacity: 1;
+    }
   }
   circle {
     fill: white;
@@ -31,21 +36,14 @@
     &.vorgehen_8 {
       fill: #E96975;
     }
+    
+    #map.show_counties & {
+      fill: black;
+    }
+    
   }
 }
 
-#map.show_locations {
-  circle {
-    fill: black !important;
-  }
-}
-
-#map.show_counties {
-  .county {
-    fill: white !important;
-    fill-opacity: 1 !important;
-  }
-}
 /* ZOOM INTERFACE
 /////////////////////////////////////////////////////////////////*/
 .compass .back {
