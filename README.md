@@ -55,24 +55,17 @@ For our visualization we needed the data as [GeoJSON](http://geojson.org/), whic
 
 After this, the GeoJSON was ready to be used for our visualization.
 
-3. Data quality
----------------
-source/data_processing/adjust_data.py is a Python script that checks source/media/data/vbs-belastete-standorte.json and source/media/maps/schweiz_gemeinden_geojson.json for consistency and generates source/media/data/vbs-belastete-standorte_bereinigt.json. In doing so the script prints information about the data
+3. Data processing
+------------------
+source/data_processing/adjust_data.py is a Python script that uses the data from source/media and checks data/vbs-belastete-standorte.json and maps/schweiz_gemeinden_geojson.json for consistency and generates data/vbs-belastete-standorte_bereinigt.json and maps/schweiz_gemeinden_geojson_bereinigt.json. In doing so the script prints information about the data:
 
  * Duplicate sites: the difference of all sites that have the same `Objekt_Nr` is printed field by field.
  * Different municipal names: sites refer to the `GMDE` field of a municipal via their `Gemeinde_Nr_BfS` field. They also mention the `properties.NAME` field name of the municipal via the `Gemeinde` field. The script prints each instance where the latter one differ. Note: the convertion process of the county borders presumably breaks the German umlaute. so we have many false positives here.
  * Missing municpials: If a site mentions a `Gemeinde_Nr_BfS` for which there is no `GMDE` this is reported as a missing municipal. Indeed, these municpials are not mentioned in the original data from admin.ch
 
-Vorgehen-Codes
-==============
+data/vbs-belastete-standorte_bereinigt.json is the same as data/vbs-belastete-standorte.json but without duplicate sites. i.e. for each set of sites with the same `Objekt_Nr` the first of them in file order is taken.
 
-0: Nicht definiert
-2: mit Abfällen belastet, kein dringender Untersuchungsbedarf
-3: Untersuchungsbedarf: Voruntersuchung erforderlich
-5: mit Abfällen belastet, kein dringender Untersuchungs- bzw. Sanierungsbedarf
-6: Untersuchungsbedarf: Detailuntersuchung erforderlich
-7: Umwelteinwirkungen: der Standort muss saniert werden
-8: teilsaniert: Umwelteinwirkungen unterbunden oder reduziert
+maps/schweiz_gemeinden_geojson_bereinigt.json. is the same as maps/schweiz_gemeinden_geojson.json but while each municipal is augmented with a new field called `Zustand`. This field is the sum of the severities of all sites that are located there. To this end, the field `Vorgehen_Code` is mapped to the respective severity using an arbitrary but carefully chosen mapping. See the Python script for details.
 
 Changelog
 =========

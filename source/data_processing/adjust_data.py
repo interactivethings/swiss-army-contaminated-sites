@@ -49,9 +49,17 @@ def load_sites(file_name):
 
   return sites
 
+
 def store_sites(sites, file_name):
   f = codecs.open(file_name, "w", "utf-8")
   data = {u"rows": sites.values()}
+  json.dump(data, f, indent=2)
+  f.close()
+
+
+def store_municipals(municipals, file_name):
+  f = codecs.open(file_name, "w", "utf-8")
+  data = {"type": "FeatureCollection", "features": municipals.values()}
   json.dump(data, f, indent=2)
   f.close()
 
@@ -75,9 +83,32 @@ def check_consistency(municipals, sites):
   for code, name in failed_code:
     print "no municipal with GMDE code", code, "and name", name
 
+
+severity_map = {
+  0:  0, # Nicht definiert
+  2:  5, # mit Abfällen belastet, kein dringender Untersuchungsbedarf
+  3:  2, # Untersuchungsbedarf: Voruntersuchung erforderlich
+  5:  5, # mit Abfällen belastet, kein dringender Untersuchungs- bzw. Sanierungsbedarf
+  6:  7, # Untersuchungsbedarf: Detailuntersuchung erforderlich
+  7: 10, # Umwelteinwirkungen: der Standort muss saniert werden
+  8:  5, # teilsaniert: Umwelteinwirkungen unterbunden oder reduziert
+}
+
+def add_severity(current_state, severity):  
+  return current_state + severity_map[severity]
+
+def augment_municipals(municipals, sites):
+  for site in sites.values():
+    gmde_code = int(site["Gemeinde_Nr_BfS"])
+    status_code = int(site["Vorgehen_Code"])
+    if municipals.has_key(gmde_code):
+      severity = add_severity(municipals[gmde_code]["properties"].get("Zustand", 0), status_code)
+      municipals[gmde_code]["properties"]["Zustand"] = severity
+
 municipals = load_municipals("source/media/maps/schweiz_gemeinden_geojson.json")
 sites = load_sites("source/media/data/vbs-belastete-standorte.json")
 check_consistency(municipals, sites)
-
+augment_municipals(municipals, sites)
 store_sites(sites, "source/media/data/vbs-belastete-standorte_bereinigt.json")
+store_municipals(municipals, "source/media/maps/schweiz_gemeinden_geojson_bereinigt.json")
 
