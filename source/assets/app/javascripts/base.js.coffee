@@ -30,8 +30,9 @@ showTooltips = (e) ->
     updateTooltip(tip)
 
 moveTooltips = () ->
-  for tip in tips
-    updateTooltip(tips[tip])
+  # console.log tips
+  for id, tip of tips
+    updateTooltip(tip) 
 
 cancelTooltip = (e) ->
   e.stopPropagation()
@@ -53,7 +54,7 @@ toggleTooltip = (f) ->
       toggle: (e) ->
         tip.visible = !tip.visible
         updateTooltip(tip)
-        $(tip.anchor).tipsy(tip.visible ? "show" : "hide")
+        $(tip.anchor).tipsy( if tip.visible then "show" else "hide")
         cancelTooltip(e)
     }
     tips[f.id] = tip
@@ -66,13 +67,14 @@ toggleTooltip = (f) ->
     })
     
     $(tip.anchor).tipsy({
-      fade: true,
+      # fade: true,
       fallback: f.properties.data.Gemeinde,
       gravity: "n",
       offset: 160,
       trigger: "manual",
       html: true
     })
+    
   tip.toggle
 
 # View change
