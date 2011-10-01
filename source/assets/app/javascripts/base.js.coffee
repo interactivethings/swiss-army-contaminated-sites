@@ -74,6 +74,7 @@ loadMarkers = (e) ->
     c = f.element
     p = c.parentNode
     u = f.element = marker
+    f.icon = icon
     u.setAttribute("transform", c.getAttribute("transform"))
     icon.setAttribute("transform", c.getAttribute("transform"))
     p.removeChild(c)
@@ -87,6 +88,7 @@ loadMarkers = (e) ->
 loadTooltips = (e) ->
   for f in e.features
     f.element.addEventListener("mousedown", toggleTooltip(f.data), false)
+    f.icon.addEventListener("mousedown", toggleTooltip(f.data), false)
     f.element.addEventListener("dblclick", cancelTooltip, false)
 
 showTooltips = (e) ->
@@ -112,7 +114,7 @@ updateTooltip = (tip) ->
   return unless tip.visible
   p = map.locationPoint(tip.location)
   tip.anchor.style.left = p.x - radius + "px"
-  tip.anchor.style.top = p.y - radius + "px"
+  tip.anchor.style.top = p.y - 20 + "px"
   $(tip.anchor).tipsy("show")
 
 toggleTooltip = (f) ->
@@ -159,7 +161,7 @@ toggleTooltip = (f) ->
       trigger: "manual",
       html: true
     })
-    
+        
   tip.toggle
 
 # View change
