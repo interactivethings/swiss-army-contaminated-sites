@@ -67,6 +67,17 @@ data/vbs-belastete-standorte_bereinigt.json is the same as data/vbs-belastete-st
 
 maps/schweiz_gemeinden_geojson_bereinigt.json. is the same as maps/schweiz_gemeinden_geojson.json but while each municipal is augmented with a new field called `Zustand`. This field is the sum of the severities of all sites that are located there. To this end, the field `Vorgehen_Code` is mapped to the respective severity using an arbitrary but carefully chosen mapping. See the Python script for details.
 
+Vorgehen-Codes
+==============
+
+0: Nicht definiert
+2: mit Abfällen belastet, kein dringender Untersuchungsbedarf
+3: Untersuchungsbedarf: Voruntersuchung erforderlich
+5: mit Abfällen belastet, kein dringender Untersuchungs- bzw. Sanierungsbedarf
+6: Untersuchungsbedarf: Detailuntersuchung erforderlich
+7: Umwelteinwirkungen: der Standort muss saniert werden
+8: teilsaniert: Umwelteinwirkungen unterbunden oder reduziert
+
 Changelog
 =========
 

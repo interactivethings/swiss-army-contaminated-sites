@@ -18,7 +18,7 @@ $YlOrRd-6: rgba(189, 0, 38, 1);
     
     #map.show_counties & {
       fill: white;
-      fill-opacity: 1;
+      fill-opacity: 0.8;
     }
   }
   path {
@@ -56,6 +56,10 @@ $YlOrRd-6: rgba(189, 0, 38, 1);
   .icon path {
     fill: black !important;
     fill-opacity: 1 !important;
+    
+    #map.show_counties & {
+      fill: white !important;
+    }
   }
 }
 

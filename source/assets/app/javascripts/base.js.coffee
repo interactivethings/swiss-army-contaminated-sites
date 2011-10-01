@@ -2,6 +2,7 @@ $ = jQuery
 po = org.polymaps
 radius = 5
 tips = {}
+maxZustand = 0
 
 iconPaths = 
   abfall: [
@@ -36,6 +37,23 @@ styleFeatures = po.stylist()
 
 styleCounties = po.stylist()
   .attr("class", "county")
+  .style("fill", (d) ->
+    step = maxZustand/6
+    z = d.properties.Zustand || 0
+    
+    if z == 0 then return "none"
+    if z < step then return "rgba(255, 255, 178, 1)"
+    if z < 2*step then return "rgba(254, 217, 118, 1)"
+    if z < 3*step then return "rgba(254, 178, 76, 1)"
+    if z < 4*step then return "rgba(253, 141, 60, 1)"
+    if z < 5*step then return "rgba(240, 59, 32, 1)"
+    if z < 6*step then return "rgba(189, 0, 38, 1)"
+  )
+
+loadCounties = (e) ->
+  for f in e.features
+    maxZustand = f.data.properties.Zustand if f.data.properties.Zustand > maxZustand
+  # console.log maxZustand
 
 loadMarkers = (e) ->
   for f in e.features
@@ -217,15 +235,17 @@ $ ->
   })
   
   # Load county shapes, then add them to the map
-  $.get "media/maps/schweiz_gemeinden_geojson.json", (countyData) ->
+  $.get "media/maps/schweiz_gemeinden_geojson_bereinigt.json", (countyData) ->
     
     map.add po.geoJson()
       .features(countyData.features)
-      .on("load", styleCounties)
+      .on("show", styleCounties)
+      .on("load", loadCounties)
+      
     # console.log p
     
     # Load points, then add them to the map
-    $.get "media/data/vbs-belastete-standorte.json", (locationData) ->
+    $.get "media/data/vbs-belastete-standorte_bereinigt.json", (locationData) ->
       # console.log data
     
       i = 0
