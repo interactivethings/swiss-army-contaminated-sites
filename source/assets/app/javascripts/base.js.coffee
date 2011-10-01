@@ -155,8 +155,21 @@ toggleTooltip = (f) ->
       width: radius * 2 + 'px'
       height: radius * 2 + 'px'
     })
+    type_icon = ""
+    switch f.properties.data['Typ_Code']
+      when 1 # Abfall
+        type_icon = "Abfallablagerung.png"
+      when 2 # Betriebsstandort
+        type_icon = "Betriebsstandort.png"
+      when 3 # Unfallstandort
+        type_icon = "Unfallstandort.png"
+      when 4 # Schiessplatz
+        type_icon = "Schiessplatz.png"
     
     tipContent = 
+      "<div class='type_icon'><img src='assets/app/images/icons/" +
+      type_icon + 
+      "'/></div>" + 
       "<h3>" + 
       f.properties.data["Typ_Text"] + 
       ": " + 
@@ -170,7 +183,6 @@ toggleTooltip = (f) ->
       "<br/>" +
       f.properties.data["Vorgehen_Text"] +
       "</p>"
-      
     
     $(tip.anchor).tipsy({
       # fade: true,
@@ -179,7 +191,7 @@ toggleTooltip = (f) ->
       trigger: "manual",
       html: true
     })
-        
+    
   tip.toggle
 
 # View change
@@ -225,6 +237,7 @@ $ ->
   map_offset = $("#map").offset()
   map_height = $(window).height() - map_offset.top
   console.log(map_offset.top);
+  
   $("#map").css({
     height: map_height
     overflow: "hidden"
@@ -277,3 +290,4 @@ $ ->
   
   $('#show_locations').click(showLocations)
   $('#show_counties').click(showCounties)
+  $('.teaser').fitted()

@@ -5,7 +5,10 @@
     @include background-image(linear-gradient(top, $teaser-background-light, $teaser-background-dark));
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   }
-  #teaser_example {
-    background: image-url("teaser_example.png") 0 50% no-repeat; 
+  #teaser_map {
+    background: image-url("teaser_map.png") 50% 50% no-repeat; 
+    .headline{
+      color: $text-dark;
+    }
   }
 }

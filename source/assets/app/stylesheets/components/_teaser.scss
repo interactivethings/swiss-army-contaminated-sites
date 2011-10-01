@@ -13,8 +13,7 @@
       float: left;
       height: 300px;
       padding: 20px 0 0 0;
-      width: 50%;
-      &.last { width: 50% } // for Firefox!
+      width: 100%;
       background-size: cover;
       -moz-background-size: cover;
       &.hovered{

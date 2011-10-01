@@ -44,7 +44,7 @@ $YlOrRd-6: rgba(189, 0, 38, 1);
       fill: $YlOrRd-6;
     }
     &.vorgehen_8 {
-      fill: $YlOrRd-6;
+      fill: $YlOrRd-2;
     }
     
     #map.show_counties & {
@@ -66,7 +66,7 @@ $YlOrRd-6: rgba(189, 0, 38, 1);
 /* ZOOM INTERFACE
 /////////////////////////////////////////////////////////////////*/
 .compass{
-  translate: 50px 50px;
+  cursor: pointer;
 }
 .compass .back {
   fill: $ui-background-dark-bottom;
@@ -111,6 +111,14 @@ $YlOrRd-6: rgba(189, 0, 38, 1);
   p{
     line-height: 1.25;
     margin: 0  10px 1em;
+  }
+  .type_icon{
+    margin: .5em 0;
+    height: 50px;
+    text-align: center;
+    img{
+      margin: 0;
+    }
   }
 }
 /* LEGEND
