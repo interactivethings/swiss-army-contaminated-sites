@@ -1,0 +1,112 @@
+/* OVERLAYS
+/////////////////////////////////////////////////////////////////*/
+.layer {
+  .county {
+    fill-opacity: 0;
+    stroke: #000;
+    stroke-width: 1px;
+    stroke-opacity: .25;
+  }
+  circle {
+    fill: white;
+    fill-opacity: .5;
+    &.vorgehen_0 {
+      fill: #87C5F8;
+      }
+    &.vorgehen_2 {
+      fill: #89E0CF;
+    }
+    &.vorgehen_3 {
+      fill: #8AF8B0;
+    }
+    &.vorgehen_5 {
+      fill: #C6F59D;
+    }
+    &.vorgehen_6 {
+      fill: #FAF591;
+    }
+    &.vorgehen_7 {
+      fill: #EF9B78;
+    }
+    &.vorgehen_8 {
+      fill: #E96975;
+    }
+  }
+}
+/* ZOOM INTERFACE
+/////////////////////////////////////////////////////////////////*/
+.compass .back {
+  fill: $ui-background-dark-bottom;
+  fill-opacity: .9;
+}
+.compass .fore {
+}
+.compass .direction {
+  fill: none;
+}
+.compass .chevron {
+  stroke-width: 5px;
+  stroke: #fff;
+  stroke-opacity: 1;
+}
+.compass .zoom .chevron {
+  stroke-width: 2px;
+}
+.compass .active .chevron,
+.compass .chevron.active {
+  stroke: #fff;
+  fill-opacity: 0.2;
+}
+.compass:hover .active .direction {
+  fill: $ui-background-dark-bottom;
+  fill-opacity: 0.2;
+}
+.compass.active .active .direction {
+  fill: $ui-background-dark-bottom;
+  fill-opacity: 1;
+}
+/* TOOLTIPS
+/////////////////////////////////////////////////////////////////*/
+.tipsy-inner {
+  padding: 10 10px 12px;
+}
+/* LEGEND
+/////////////////////////////////////////////////////////////////*/
+.legend_overlay{
+  @include pie-clearfix;
+  @include background-image(linear-gradient(top, $ui-background-dark-top, $ui-background-dark-bottom));
+  bottom: 20px;
+  margin: 0 20px;
+  padding: 5px;
+  position: absolute;
+  z-index: 10;
+  span.label{
+    color: $text-superlight;
+    display: block;
+    float: left;
+  }
+  .legend{
+    @include pie-clearfix;
+    margin: 0 0 0 150px;
+    li{
+      float: left;
+      font-size: 12px;
+      list-style: none;
+      span.cause {
+        background: #f90;
+        display: block;
+        text-align: center;
+        padding: 2px 0px 4px;
+        color: $text-dark;
+        text-decoration: none;
+      }
+      span.action {
+        color: $text-superlight;
+        display: block;
+        padding: 4px 15px 4px;
+        text-align: center;
+        text-decoration: none;
+      }
+    }
+  }
+}

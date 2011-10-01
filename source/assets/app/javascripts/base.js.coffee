@@ -24,8 +24,8 @@ styleCounties = po.stylist()
 
 loadTooltips = (e) ->
   for f in e.features
-    f.element.addEventListener("mousedown", toggleTooltips(f.data), false)
-    f.element.addEventListener("dblclick", cancelTooltips, false)
+    f.element.addEventListener("mousedown", toggleTooltip(f.data), false)
+    f.element.addEventListener("dblclick", cancelTooltip, false)
 
 showTooltips = (e) ->
   for f in e.features
@@ -35,34 +35,34 @@ showTooltips = (e) ->
       lat: f.data.geometry.coordinates[1],
       lon: f.data.geometry.coordinates[0]
     }
-    updateTooltips(tip)
+    updateTooltip(tip)
 
 moveTooltips = () ->
   for tip in tips
-    update(tips[tip])
+    updateTooltip(tips[tip])
 
-cancelTooltips = (e) ->
+cancelTooltip = (e) ->
   e.stopPropagation();
   e.preventDefault();
 
-updateTooltips = (tip) ->
-  return if !tip.visible
+updateTooltip = (tip) ->
+  return unless tip.visible
   p = map.locationPoint(tip.location)
   tip.anchor.style.left = p.x - radius + "px"
   tip.anchor.style.top = p.y - radius + "px"
   $(tip.anchor).tipsy("show")
 
-toggleTooltips = (f) ->
+toggleTooltip = (f) ->
   tip = tips[f.id]
   unless tip
     tip = {
-      anchor: document.body.appendChild(document.createElement("a")),
+      anchor: document.getElementById("map").appendChild(document.createElement("a")),
       visible: false,
       toggle: (e) ->
         tip.visible = !tip.visible
-        updateTooltips(tip)
+        updateTooltip(tip)
         $(tip.anchor).tipsy(tip.visible ? "show" : "hide")
-        cancelTooltips(e)
+        cancelTooltip(e)
     }
     tips[f.id] = tip
     
@@ -74,10 +74,12 @@ toggleTooltips = (f) ->
     })
     
     $(tip.anchor).tipsy({
-      html: true,
+      fade: true,
       fallback: f.properties.data.Gemeinde,
-      gravity: $.fn.tipsy.autoNS,
-      trigger: "manual"
+      gravity: "n",
+      offset: 160,
+      trigger: "manual",
+      html: true
     })
   tip.toggle
 
@@ -94,7 +96,10 @@ map.add(po.image()
 .hosts(["a.", "b.", "c.", ""])))
 
 $ ->
-  
+  map_offset = $("#map").offset()
+  $("#map").css({
+    #height: $(document).height() - map_offset.top
+  })
   $.get "media/data/vbs-belastete-standorte.json", (data) ->
     # console.log data
     

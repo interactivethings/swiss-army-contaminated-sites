@@ -5,8 +5,41 @@ slug: "application"
   <div class="row">
     <div class="twelvecol">
       <p>Standortbelastung durch militärische Einrichtungen</p>
+      <ul class="filter">
+        <li><a href="#" data-filter=".locations" title="Einzelne Betriebe" class="active">Einzelne Betriebe</a></li>
+        <li><a href="#" data-filter=".counties" title="Gesamtbelastung">Gesamtbelastung</a></li>
+      </ul>
     </div>
   </div>
 </div>
 <div id="map">
+  <div class="legend_overlay">
+    <span class="label">Umwelteinwirkung</span>
+    <ul class="legend">
+      <li>
+        <span class="cause">nicht definiert</span>
+        <span class="action">Vorgehen nicht definiert</span>
+      </li>
+      <li>
+        <span class="cause">unterbunden oder reduziert</span>
+        <span class="action">Teilsaniert</span>
+      </li>
+      <li>
+        <span class="cause">mit Abfällen belastet</span>
+        <span class="action">Sanierungsbedarf nicht dringend</span>
+      </li>
+      <li>
+        <span class="cause">möglich</span>
+        <span class="action">Voruntersuchung</span>
+      </li>
+      <li>
+        <span class="cause">möglich</span>
+        <span class="action">Detailuntersuchung</span>
+      </li>
+      <li>
+        <span class="cause">definiert</span>
+        <span class="action">Sanierungsbedarf</span>
+      </li>
+    </ul>
+  </div>
 </div>

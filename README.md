@@ -1,8 +1,16 @@
 Introduction
-===========
+============
 Interactive Things takes part in the Make.OpenData.ch Camp on September 29th.
 This is our submission.
 
+To Do
+=====
+tooltips content
+tooltips position
+choropleth colors
+dots colors
+legend
+toggle
 
 Data Sources
 ============
@@ -51,7 +59,6 @@ For our visualization we needed the data as [GeoJSON](http://geojson.org/), whic
 `ogr2ogr -f "GeoJSON" target_file.json source_file.shp`
 
 After this, the GeoJSON was ready to be used for our visualization.
-
 
 Changelog
 =========
