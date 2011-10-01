@@ -5,7 +5,6 @@ This is our submission.
 
 To Do
 =====
-tooltips content
 choropleth colors
 
 Data Sources

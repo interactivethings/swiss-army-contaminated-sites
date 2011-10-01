@@ -66,11 +66,26 @@ toggleTooltip = (f) ->
       height: radius * 2 + 'px'
     })
     
+    tipContent = 
+      "<h3>" + 
+      f.properties.data["Typ_Text"] + 
+      ": " + 
+      f.properties.data["Bezeichnung"] + 
+      "</h3><p>" + 
+      f.properties.data["Tätigkeit_Text"] +
+      "<br/>" +
+      f.properties.data["Gemeinde"] +
+      "(" +  f.properties.data["Kanton"] + "), " +
+      f.properties.data["Betriebsdauer"] +
+      "<br/>" +
+      f.properties.data["Vorgehen_Text"] +
+      "</p>"
+      
+    
     $(tip.anchor).tipsy({
       # fade: true,
-      fallback: f.properties.data.Gemeinde,
-      gravity: "n",
-      offset: 160,
+      fallback: tipContent,
+      gravity: $.fn.tipsy.autoNS,
       trigger: "manual",
       html: true
     })
@@ -85,6 +100,7 @@ showCounties = (e) ->
   $('#map').removeClass("show_locations").addClass("show_counties")
   e.stopPropagation()
   e.preventDefault()
+  toggleLegends()
   
 showLocations = (e) ->
   $('#show_counties').removeClass "active"
@@ -92,13 +108,19 @@ showLocations = (e) ->
   $('#map').removeClass("show_counties").addClass("show_locations")
   e.stopPropagation()
   e.preventDefault()
+  toggleLegends()
   
+  
+toggleLegends = (e) ->
+  $('#counties').fadeToggle();
+  $('#locations').fadeToggle();
 
 # Setup map
 map = po.map()
 .container(document.getElementById("map").appendChild(po.svg("svg")))
 .center({lon: 8.596677185140349, lat: 46.77841693384364})
 .zoom(8)
+.zoomRange([6,18])
 .add(po.interact())
 .on("move", moveTooltips)
 .on("resize", moveTooltips)
@@ -146,7 +168,7 @@ $ ->
         .features(features)
         
       map.add po.compass().pan("none")
-      
+      $('#locations').fadeToggle();
   
   
   # Set up view change event handlers

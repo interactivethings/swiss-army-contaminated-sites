@@ -1,8 +1,12 @@
 /* APPLICATION
 /////////////////////////////////////////////////////////////////*/
 .application{
-  #introduction p{
-    float: left;
+  #introduction{
+    z-index: 100001;
+    p{
+      float: left;
+      position: relative;
+    }
   }
   .filter{
     float: right;

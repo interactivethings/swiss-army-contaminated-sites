@@ -96,7 +96,17 @@ $YlOrRd-6: rgba(189, 0, 38, 1);
 /* TOOLTIPS
 /////////////////////////////////////////////////////////////////*/
 .tipsy-inner {
-  padding: 10 10px 12px;
+  text-align: left !important;
+  font-size: 14px !important;
+  max-width: 300px !important;
+  h3{
+    line-height: 1.25;
+    margin: .5em 10px;
+  }
+  p{
+    line-height: 1.25;
+    margin: 0  10px 1em;
+  }
 }
 /* LEGEND
 /////////////////////////////////////////////////////////////////*/
@@ -154,6 +164,7 @@ $YlOrRd-6: rgba(189, 0, 38, 1);
     }
   }
   &#locations{
+    display: none;
     span.label{
       width: 100% / 7 * 1 - 1%;
     }
@@ -183,7 +194,8 @@ $YlOrRd-6: rgba(189, 0, 38, 1);
     }
   }
   &#counties{
-    bottom: 45px;
+    display: none;
+    bottom: 46px;
     span.label{
       width: 100% / 7 * 1 - 1%;
     }
