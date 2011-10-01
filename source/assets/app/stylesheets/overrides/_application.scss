@@ -8,24 +8,11 @@
       position: relative;
     }
   }
-  .filter{
-    float: right;
-    li{
-      margin-right: 0;
-      &:first-child a{
-        @include border-right-radius(0);
-      }
-      &:last-child a{
-        @include border-left-radius(0);
-      }
-    }
-  }
   #map{
     position: relative;
     svg {
       display: block;
       overflow: hidden;
-      height: 600px;
     }
   }
   

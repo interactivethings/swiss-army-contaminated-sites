@@ -2,13 +2,6 @@
 /////////////////////////////////////////////////////////////////*/
 /* COLORS
 /////////////////////////////////////////////////////////////////*/
-$reds-1: rgba(254, 229, 217, 1);
-$reds-2: rgba(252, 187, 161, 1);
-$reds-3: rgba(252, 146, 114, 1);
-$reds-4: rgba(251, 106, 74, 1);
-$reds-5: rgba(222, 45, 38, 1);
-$reds-6: rgba(165, 15, 21, 1);
-
 $YlOrRd-1: rgba(255, 255, 178, 1);
 $YlOrRd-2: rgba(254, 217, 118, 1);
 $YlOrRd-3: rgba(254, 178, 76, 1);
@@ -21,7 +14,7 @@ $YlOrRd-6: rgba(189, 0, 38, 1);
     fill-opacity: 0;
     stroke: #000;
     stroke-width: 1px;
-    stroke-opacity: .1;
+    stroke-opacity: .08;
     
     #map.show_counties & {
       fill: white;
@@ -68,6 +61,9 @@ $YlOrRd-6: rgba(189, 0, 38, 1);
 
 /* ZOOM INTERFACE
 /////////////////////////////////////////////////////////////////*/
+.compass{
+  translate: 50px 50px;
+}
 .compass .back {
   fill: $ui-background-dark-bottom;
   fill-opacity: .9;
@@ -178,22 +174,22 @@ $YlOrRd-6: rgba(189, 0, 38, 1);
       li{
         width: 100% / 6 * 1;
         &:nth-child(1) span.cause{
-          background: $YlOrRd-1;
+          @include background-image(linear-gradient(top, $YlOrRd-1, darken($YlOrRd-1, 10%)));
         }
         &:nth-child(2) span.cause{
-          background: $YlOrRd-2;
+          @include background-image(linear-gradient(top, $YlOrRd-2, darken($YlOrRd-2, 10%)));
         }
         &:nth-child(3) span.cause{
-          background: $YlOrRd-3;
+          @include background-image(linear-gradient(top, $YlOrRd-3, darken($YlOrRd-3, 10%)));
         }
         &:nth-child(4) span.cause{
-          background: $YlOrRd-4;
+          @include background-image(linear-gradient(top, $YlOrRd-4, darken($YlOrRd-4, 10%)));
         }
         &:nth-child(5) span.cause{
-          background: $YlOrRd-5;
+          @include background-image(linear-gradient(top, $YlOrRd-5, darken($YlOrRd-5, 10%)));
         }
         &:nth-child(6) span.cause{
-          background: $YlOrRd-6;
+          @include background-image(linear-gradient(top, $YlOrRd-6, darken($YlOrRd-6, 10%)));
         }
       }
     }
@@ -209,22 +205,22 @@ $YlOrRd-6: rgba(189, 0, 38, 1);
       li{
         width: 100% / 6 * 1;
         &:nth-child(1) span.cause{
-          background: $YlOrRd-1;
+          @include background-image(linear-gradient(top, $YlOrRd-1, darken($YlOrRd-1, 10%)));
         }
         &:nth-child(2) span.cause{
-          background: $YlOrRd-2;
+          @include background-image(linear-gradient(top, $YlOrRd-2, darken($YlOrRd-2, 10%)));
         }
         &:nth-child(3) span.cause{
-          background: $YlOrRd-3;
+          @include background-image(linear-gradient(top, $YlOrRd-3, darken($YlOrRd-3, 10%)));
         }
         &:nth-child(4) span.cause{
-          background: $YlOrRd-4;
+          @include background-image(linear-gradient(top, $YlOrRd-4, darken($YlOrRd-4, 10%)));
         }
         &:nth-child(5) span.cause{
-          background: $YlOrRd-5;
+          @include background-image(linear-gradient(top, $YlOrRd-5, darken($YlOrRd-5, 10%)));
         }
         &:nth-child(6) span.cause{
-          background: $YlOrRd-6;
+          @include background-image(linear-gradient(top, $YlOrRd-6, darken($YlOrRd-6, 10%)));
         }
       }
     }

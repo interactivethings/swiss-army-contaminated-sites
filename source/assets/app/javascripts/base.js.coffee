@@ -205,8 +205,15 @@ map.add(po.image()
 # DOM Loaded:
 $ ->
   map_offset = $("#map").offset()
+  map_height = $(window).height() - map_offset.top
+  console.log(map_offset.top);
   $("#map").css({
-    #height: $(document).height() - map_offset.top
+    height: map_height
+    overflow: "hidden"
+  })
+  $("body").css({
+    height: map_height
+    overflow: "hidden"
   })
   
   # Load county shapes, then add them to the map
@@ -240,7 +247,9 @@ $ ->
         .on("show", showTooltips)
         .features(features)
         
-      map.add po.compass().pan("none")
+      map.add po.compass()
+      .pan("none")
+      
       $('#locations').fadeToggle();
   
   

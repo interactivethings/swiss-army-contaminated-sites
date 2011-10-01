@@ -4,9 +4,17 @@
     <div id="navigation" class="twelvecol">
       <h1 <%= "class='active'" if is_page?('home') %>><a href="/">Interactive Things</a></h1>
       <ul>
-         <%= nav_link('application', 'Application') %>
+        <%= nav_link('index', 'Description') %>
+        <%= nav_link('application', 'Swiss Military Legacy') %>
       </ul>
-      <span <%= "class='active'" if is_page?('contact') %>><a href="/contact">Contact</a></span>
+        <%= "<div id='filter_toggle'>
+          <span class='label'>Filter:</span><ul class='filter'>
+          <li><a href='#locations' id='show_locations' data-filter='.locations' title='Standorte' class='active'>Standorte</a></li>
+          <li><a href='#counties' id='show_counties' data-filter='.counties' title='Gemeinden'>Gemeinden</a></li>
+        </ul></div>" if is_page?('application') %>
+
+      <%= "<span class='contact'><a href='http://interactivethings.com/contact'>Contact</a>" if is_page?('home') %>
+        
     </div>
   </div>
   </div>

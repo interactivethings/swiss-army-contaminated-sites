@@ -70,7 +70,7 @@
       } 
     }
   }
-  span{
+  span.contact{
     position: absolute;
     top: 0;
     right: -20px;
@@ -79,6 +79,43 @@
     a {
       @include inline-block;
       line-height: 50px; 
+    }
+  }
+  #filter_toggle{
+    position: absolute;
+    top: 0;
+    right: 0;
+    span.label{
+      line-height: 50px;
+      display: block;
+      float: left;
+    }
+    .filter{
+      float: left;
+      margin: 0 0 0 20px;
+      min-width: 0;
+      li{
+        margin-right: 0;
+        &.active{
+          background: none;
+        }
+        a{
+          @include background-image(linear-gradient(top, #555,#333));
+          line-height: 30px;
+          margin: 9px 0 11px;
+          padding: 0 15px;
+          &.active{
+            @include background-image(linear-gradient(top, #777,#555));
+            color: $text-superlight;
+          }
+        }
+        &:first-child a{
+          @include border-right-radius(0);
+        }
+        &:last-child a{
+          @include border-left-radius(0);
+        }
+      }
     }
   }
 }
