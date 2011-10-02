@@ -47,6 +47,7 @@ end
 
 Grancher::Task.new do |g|
   g.branch = 'gh-pages'
+  g.keep '.gitignore'
   # Can't actually push automatically because we're working
   # in a Github organization repo.
   # g.push_to = 'origin' # automatically push too
