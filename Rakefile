@@ -1,4 +1,5 @@
 require 'fileutils'
+require 'grancher/task'
 
 #
 # Rake Tasks
@@ -39,4 +40,13 @@ desc "Run local development server"
 task :server do
   system "middleman server"
   system "open http://0.0.0.0:4567"
+end
+
+
+
+Grancher::Task.new do |g|
+  g.branch = 'gh-pages'
+  g.push_to = 'origin' # automatically push too
+  
+  g.directory 'build'
 end
