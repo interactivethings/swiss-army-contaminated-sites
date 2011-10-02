@@ -13,6 +13,7 @@ compass_config do |config|
   config.images_dir       = "/source/assets/app/images"
   config.http_images_path = "/assets/app/images"
   config.output_style = :compressed
+  config.relative_assets = true
 end
 
 ###
@@ -33,7 +34,7 @@ end
 # Use the Directory Indexes feature to tell Middleman
 # to create a folder for each .html file and place the
 # built template file as the index of that folder.
-activate :directory_indexes
+# activate :directory_indexes
 
 ###
 # Page command
@@ -69,20 +70,23 @@ helpers do
   end
 
   def nav_link(slug, title)
-    return "<li class='active'><a href='/#{slug}'>#{title}</a></li>" if is_page?(slug)
-    "<li><a href='/#{slug}'>#{title}</a></li>"
+    if is_page?(slug)
+      "<li class='active'><a href='#{slug}.html'>#{title}</a></li>"
+    else
+      "<li><a href='#{slug}.html'>#{title}</a></li>"
+    end
   end
   
   def media_image(filename, alt = "")
-    "<img src='/media/images/#{filename}' alt='#{alt}' />"
+    "<img src='media/images/#{filename}' alt='#{alt}' />"
   end
   
   def javascript_vendor_tag(path)
-    javascript_include_tag("/assets/vendor/#{path}")
+    tag(:script, :src => "assets/vendor/#{path}", :type => 'text/javascript', :content => '')
   end
   
   def stylesheet_vendor_tag(path)
-    stylesheet_link_tag("/assets/vendor/#{path}")
+    tag(:link, :href => "assets/vendor/#{path}", :type => 'text/css', :rel => 'stylesheet')
   end
   
 end
@@ -108,7 +112,7 @@ configure :build do
   # activate :cache_buster
   
   # Use relative URLs
-  # activate :relative_assets
+  activate :relative_assets
   
   # Compress PNGs after build
   # First: gem install middleman-smusher
