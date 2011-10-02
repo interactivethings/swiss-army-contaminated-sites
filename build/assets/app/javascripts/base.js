@@ -1,5 +1,5 @@
 (function() {
-  var $, cancelTooltip, iconPaths, loadCounties, loadMarkers, loadTooltips, map, maxZustand, moveTooltips, po, radius, showCounties, showLocations, showTooltips, styleCounties, styleFeatures, tips, toggleLegends, toggleTooltip, updateTooltip;
+  var $, cancelTooltip, iconPaths, loadCounties, loadMarkers, loadTooltips, maxZustand, moveTooltips, po, radius, showCounties, showLocations, showTooltips, styleCounties, styleFeatures, tips, toggleLegends, toggleTooltip, updateTooltip;
   $ = jQuery;
   po = org.polymaps;
   radius = 5;
@@ -227,17 +227,20 @@
     $('#counties').fadeToggle();
     return $('#locations').fadeToggle();
   };
-  map = po.map().container(document.getElementById("map").appendChild(po.svg("svg"))).center({
-    lon: 8.596677185140349,
-    lat: 46.77841693384364
-  }).zoom(8).zoomRange([6, 18]).add(po.interact()).on("move", moveTooltips).on("resize", moveTooltips);
-  map.add(po.image().url(po.url("http://{S}tile.cloudmade.com/1a1b06b230af4efdbb989ea99e9841af/45763/256/{Z}/{X}/{Y}.png").hosts(["a.", "b.", "c.", ""])));
   $(function() {
-    var map_height, map_offset;
-    map_offset = $("#map").offset();
+    var $map, map, map_height, map_offset;
+    $map = $("#map");
+    if ($map.length === 0) {
+      return;
+    }
+    map = po.map().container(document.getElementById("map").appendChild(po.svg("svg"))).center({
+      lon: 8.596677185140349,
+      lat: 46.77841693384364
+    }).zoom(8).zoomRange([6, 18]).add(po.interact()).on("move", moveTooltips).on("resize", moveTooltips);
+    map.add(po.image().url(po.url("http://{S}tile.cloudmade.com/1a1b06b230af4efdbb989ea99e9841af/45763/256/{Z}/{X}/{Y}.png").hosts(["a.", "b.", "c.", ""])));
+    map_offset = $map.offset();
     map_height = $(window).height() - map_offset.top;
-    console.log(map_offset.top);
-    $("#map").css({
+    $map.css({
       height: map_height,
       overflow: "hidden"
     });
@@ -245,9 +248,9 @@
       height: map_height,
       overflow: "hidden"
     });
-    $.get("media/maps/schweiz_gemeinden_geojson_bereinigt.json", function(countyData) {
+    $.getJSON("media/maps/schweiz_gemeinden_geojson_bereinigt.json", function(countyData) {
       map.add(po.geoJson().features(countyData.features).on("show", styleCounties).on("load", loadCounties));
-      return $.get("media/data/vbs-belastete-standorte_bereinigt.json", function(locationData) {
+      return $.getJSON("media/data/vbs-belastete-standorte_bereinigt.json", function(locationData) {
         var features, i, row, _i, _len, _ref;
         i = 0;
         features = [];

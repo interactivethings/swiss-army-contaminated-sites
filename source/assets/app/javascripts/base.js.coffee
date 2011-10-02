@@ -217,28 +217,35 @@ toggleLegends = (e) ->
   $('#counties').fadeToggle();
   $('#locations').fadeToggle();
 
-# Setup map
-map = po.map()
-.container(document.getElementById("map").appendChild(po.svg("svg")))
-.center({lon: 8.596677185140349, lat: 46.77841693384364})
-.zoom(8)
-.zoomRange([6,18])
-.add(po.interact())
-.on("move", moveTooltips)
-.on("resize", moveTooltips)
-
-# Add map background tiles
-map.add(po.image()
-.url(po.url("http://{S}tile.cloudmade.com/1a1b06b230af4efdbb989ea99e9841af/45763/256/{Z}/{X}/{Y}.png")
-.hosts(["a.", "b.", "c.", ""])))
 
 # DOM Loaded:
 $ ->
-  map_offset = $("#map").offset()
+  $map = $("#map")
+
+  # Stop here when no map element is present
+  return if $map.length == 0
+
+
+  # Setup map
+  map = po.map()
+  .container(document.getElementById("map").appendChild(po.svg("svg")))
+  .center({lon: 8.596677185140349, lat: 46.77841693384364})
+  .zoom(8)
+  .zoomRange([6,18])
+  .add(po.interact())
+  .on("move", moveTooltips)
+  .on("resize", moveTooltips)
+
+  # Add map background tiles
+  map.add(po.image()
+  .url(po.url("http://{S}tile.cloudmade.com/1a1b06b230af4efdbb989ea99e9841af/45763/256/{Z}/{X}/{Y}.png")
+  .hosts(["a.", "b.", "c.", ""])))
+
+
+  map_offset = $map.offset()
   map_height = $(window).height() - map_offset.top
-  console.log(map_offset.top);
   
-  $("#map").css({
+  $map.css({
     height: map_height
     overflow: "hidden"
   })
@@ -248,7 +255,7 @@ $ ->
   })
   
   # Load county shapes, then add them to the map
-  $.get "media/maps/schweiz_gemeinden_geojson_bereinigt.json", (countyData) ->
+  $.getJSON "media/maps/schweiz_gemeinden_geojson_bereinigt.json", (countyData) ->
     
     map.add po.geoJson()
       .features(countyData.features)
@@ -258,7 +265,7 @@ $ ->
     # console.log p
     
     # Load points, then add them to the map
-    $.get "media/data/vbs-belastete-standorte_bereinigt.json", (locationData) ->
+    $.getJSON "media/data/vbs-belastete-standorte_bereinigt.json", (locationData) ->
       # console.log data
     
       i = 0
