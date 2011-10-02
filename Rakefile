@@ -10,6 +10,7 @@ task :default => :help
 task :help do
   puts "\n"
   system "rake -T"
+  puts "\nTo publish this repo to Github pages, run 'rake publish'\nand then push the 'gh-pages' branch to Github."
 end
 
 desc "Install all required files."
@@ -46,7 +47,9 @@ end
 
 Grancher::Task.new do |g|
   g.branch = 'gh-pages'
-  g.push_to = 'origin' # automatically push too
+  # Can't actually push automatically because we're working
+  # in a Github organization repo.
+  # g.push_to = 'origin' # automatically push too
   
   g.directory 'build'
 end
