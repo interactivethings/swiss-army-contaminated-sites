@@ -1,10 +1,11 @@
 (function() {
-  var $, cancelTooltip, iconPaths, loadCounties, loadMarkers, loadTooltips, maxZustand, moveTooltips, po, radius, showCounties, showLocations, showTooltips, styleCounties, styleFeatures, tips, toggleLegends, toggleTooltip, updateTooltip;
+  var $, cancelTooltip, iconPaths, loadCounties, loadMarkers, loadTooltips, map, maxZustand, moveTooltips, po, radius, showCounties, showLocations, showTooltips, styleCounties, styleFeatures, tips, toggleLegends, toggleTooltip, updateTooltip;
   $ = jQuery;
   po = org.polymaps;
   radius = 5;
   tips = {};
   maxZustand = 0;
+  map = null;
   iconPaths = {
     abfall: ['M-3.448-15.771h0.218v0.812H3.23v-0.812h0.219c0.221,0,0.401-0.18,0.401-0.401c0-0.222-0.18-0.401-0.401-0.401H3.23h-6.459h-0.218c-0.222,0-0.401,0.179-0.401,0.401C-3.849-15.95-3.669-15.771-3.448-15.771z', 'M3.449-7.746H3.23V-8.56h-6.459v0.813h-0.218c-0.222,0-0.401,0.18-0.401,0.4c0,0.222,0.18,0.402,0.401,0.402h0.218H3.23h0.219c0.221,0,0.401-0.181,0.401-0.402S3.67-7.746,3.449-7.746z', 'M-3.229-9.304H3.23v-4.91h-6.459V-9.304z M-1.6-12.851c-0.14-0.141-0.14-0.368,0-0.509c0.141-0.141,0.368-0.141,0.508,0L0-12.267l1.092-1.093c0.14-0.141,0.368-0.141,0.508,0c0.141,0.141,0.141,0.369,0,0.509l-1.092,1.092l1.092,1.092c0.141,0.141,0.141,0.368,0,0.509c-0.07,0.07-0.162,0.105-0.254,0.105s-0.184-0.035-0.255-0.105L0-11.25l-1.093,1.092c-0.07,0.07-0.162,0.105-0.254,0.105c-0.092,0-0.184-0.035-0.254-0.105c-0.141-0.141-0.141-0.368,0-0.509l1.091-1.092L-1.6-12.851z'],
     betrieb: ['M2.048-10.678v-1.138l-2.298,1.138v-1.138l-2.298,1.138v-3.551c0-0.199-0.2-0.36-0.447-0.36h-0.904c-0.247,0-0.447,0.161-0.447,0.36v7.797c0,0.199,0.2,0.36,0.447,0.36h7.798c0.248,0,0.447-0.161,0.447-0.36v-4.246v-1.138L2.048-10.678z', 'M-2.964-15.275H1.01c0.286,0,0.518-0.231,0.518-0.518S1.297-16.31,1.01-16.31h-3.974c-0.286,0-0.518,0.231-0.518,0.518C-3.482-15.506-3.25-15.275-2.964-15.275z', 'M-0.2-16.852h2.421c0.286,0,0.518-0.231,0.518-0.518c0-0.286-0.231-0.518-0.518-0.518H-0.2c-0.286,0-0.518,0.231-0.518,0.518C-0.718-17.083-0.486-16.852-0.2-16.852z'],
@@ -228,7 +229,7 @@
     return $('#locations').fadeToggle();
   };
   $(function() {
-    var $map, map, map_height, map_offset;
+    var $map, map_height, map_offset;
     $map = $("#map");
     if ($map.length === 0) {
       return;
