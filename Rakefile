@@ -39,8 +39,8 @@ end
 
 desc "Run local development server"
 task :server do
-  system "middleman server"
   system "open http://0.0.0.0:4567"
+  system "middleman server"
 end
 
 

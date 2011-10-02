@@ -8,13 +8,11 @@
 
 # Change Compass configuration
 compass_config do |config|
-  config.environment = :development
-  config.http_path = "/"
-  config.images_dir       = "/source/assets/app/images"
-  config.http_images_path = "/assets/app/images"
   config.output_style = :compressed
   config.relative_assets = true
 end
+
+
 
 ###
 # Haml
