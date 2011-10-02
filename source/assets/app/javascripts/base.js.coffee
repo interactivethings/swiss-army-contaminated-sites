@@ -3,6 +3,7 @@ po = org.polymaps
 radius = 5
 tips = {}
 maxZustand = 0
+map = null
 
 iconPaths = 
   abfall: [
@@ -224,7 +225,6 @@ $ ->
 
   # Stop here when no map element is present
   return if $map.length == 0
-
 
   # Setup map
   map = po.map()
