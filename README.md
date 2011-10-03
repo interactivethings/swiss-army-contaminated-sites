@@ -1,12 +1,39 @@
 Introduction
 ============
-Interactive Things takes part in the Make.OpenData.ch Camp on September 29th.
+Interactive Things takes part in the Make.OpenData.ch Camp on September 30th and October 1st 2011.
 This is our submission.
+
+Contributors
+============
+
+The Interactive Things Team
+---------------------------
+
+* Benjamin Wiederkehr (map & UI coding)
+* Christian Siegrist (UI design)
+* Christoph Schmid (UI & icon design)
+* Peter Gassner (data analysis & wrangling, QGIS taming, GitHub pages publishing)
+* Jeremy Stucki (data analysis, map & UI coding)
+* Flavio Gortana (icon design)
+
+Other Contributors
+------------------
+
+* Alexander Bernbauer (last-minute data wrangling!)
+* Lorenz ? (helped with ideas, some data analysis)
 
 To Do
 =====
 
-* choropleth colors
+* Double-check county map!
+* Improve tooltip behavior
+* Find a more descriptive name
+* Rename repository
+* Minimize JSON size (remove formatting), improve load time
+* Probably optimize the code a little
+* Check content of description page (dead download links etc.)
+* Put Fork Me Badge on description page
+* License!
 
 Data Sources
 ============
@@ -68,9 +95,17 @@ Data processing
 
 `maps/schweiz_gemeinden_geojson_bereinigt.json` is the same as `maps/schweiz_gemeinden_geojson.json` but while each municipal is augmented with a new field called `Zustand`. This field is the sum of the severities of all sites that are located there. To this end, the field `Vorgehen_Code` is mapped to the respective severity using an arbitrary but carefully chosen mapping. See the Python script for details.
 
+References
+==========
+
+* Compass:      http://compass-style.org/
+* CoffeeScript: http://jashkenas.github.com/coffee-script/
+
+Miscellaneous
+=============
 
 Vorgehen-Codes
-==============
+--------------
 
 0: Nicht definiert  
 2: mit Abfällen belastet, kein dringender Untersuchungsbedarf  
@@ -79,10 +114,3 @@ Vorgehen-Codes
 6: Untersuchungsbedarf: Detailuntersuchung erforderlich  
 7: Umwelteinwirkungen: der Standort muss saniert werden  
 8: teilsaniert: Umwelteinwirkungen unterbunden oder reduziert
-
-
-References
-==========
-
-* Compass:      http://compass-style.org/
-* CoffeeScript: http://jashkenas.github.com/coffee-script/
