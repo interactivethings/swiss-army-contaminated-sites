@@ -27,8 +27,6 @@ To Do
 
 * Double-check county map!
 * Improve tooltip behavior
-* Find a more descriptive name
-* Rename repository
 * Minimize JSON size (remove formatting), improve load time
 * Probably optimize the code a little
 * Check content of description page (dead download links etc.)
