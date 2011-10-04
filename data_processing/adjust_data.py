@@ -53,14 +53,14 @@ def load_sites(file_name):
 def store_sites(sites, file_name):
   f = codecs.open(file_name, "w", "utf-8")
   data = {u"rows": sites.values()}
-  json.dump(data, f, indent=2)
+  json.dump(data, f, separators=(',',':'))
   f.close()
 
 
 def store_municipals(municipals, file_name):
   f = codecs.open(file_name, "w", "utf-8")
   data = {"type": "FeatureCollection", "features": municipals.values()}
-  json.dump(data, f, indent=2)
+  json.dump(data, f, separators=(',',':'))
   f.close()
 
 
