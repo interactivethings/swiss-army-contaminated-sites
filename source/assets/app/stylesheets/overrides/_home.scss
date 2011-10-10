@@ -1,6 +1,6 @@
 /* HOME
 /////////////////////////////////////////////////////////////////*/
-.home{
+.index{
   .teasers{
     @include background-image(linear-gradient(top, $teaser-background-light, $teaser-background-dark));
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
