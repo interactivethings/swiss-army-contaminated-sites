@@ -224,13 +224,28 @@ toggleLegends = (e) ->
   $('#legend_counties').fadeToggle();
   $('#legend_locations').fadeToggle();
 
+resizeMap = (e) ->
+  $map = $("#map")
+  map_offset = $map.offset()
+  map_height = $(window).height() - map_offset.top
+  
+  $map.css({
+    height: map_height
+    overflow: "hidden"
+  })
+  $("body").css({
+    height: map_height
+    overflow: "hidden"
+  })
 
 # DOM Loaded:
 $ ->
-  $map = $("#map")
-
+  if $('html.svg').length == 0
+    alert "Your Browser must support SVG. Please upgrade to a newer/other one."
+    return
+  
   # Stop here when no map element is present
-  return if $map.length == 0
+  return if $("#map").length == 0
 
   # Setup map
   map = po.map()
@@ -246,19 +261,6 @@ $ ->
   map.add(po.image()
   .url(po.url("http://{S}tile.cloudmade.com/1a1b06b230af4efdbb989ea99e9841af/45763/256/{Z}/{X}/{Y}.png")
   .hosts(["a.", "b.", "c.", ""])))
-
-
-  map_offset = $map.offset()
-  map_height = $(window).height() - map_offset.top
-  
-  $map.css({
-    height: map_height
-    overflow: "hidden"
-  })
-  $("body").css({
-    height: map_height
-    overflow: "hidden"
-  })
   
   # Load county shapes, then add them to the map
   $.getJSON "media/maps/schweiz_gemeinden_geojson_bereinigt.json", (countyData) ->
@@ -306,3 +308,6 @@ $ ->
   $('#show_locations').click(showLocations)
   $('#show_counties').click(showCounties)
   $('.teaser').fitted()
+  
+  $(window).resize resizeMap
+  resizeMap()
