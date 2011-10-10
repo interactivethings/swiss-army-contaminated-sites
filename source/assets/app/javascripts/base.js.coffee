@@ -143,8 +143,15 @@ toggleTooltip = (f) ->
       visible: false,
       toggle: (e) ->
         tip.visible = !tip.visible
-        updateTooltip(tip)
-        $(tip.anchor).tipsy( if tip.visible then "show" else "hide")
+        if tip.visible
+          updateTooltip(tip)
+          $(tip.anchor).tipsy("show")
+          for id,t of tips
+            if t isnt tip
+              t.visible = false
+              $(t.anchor).tipsy("hide")
+        else
+          $(tip.anchor).tipsy("hide")
         cancelTooltip(e)
     }
     tips[f.id] = tip
@@ -188,7 +195,7 @@ toggleTooltip = (f) ->
       # fade: true,
       fallback: tipContent,
       gravity: $.fn.tipsy.autoNS,
-      trigger: "manual",
+      trigger: "hover",
       html: true
     })
     

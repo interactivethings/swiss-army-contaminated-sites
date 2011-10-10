@@ -34,6 +34,7 @@ $YlOrRd-6: rgba(189, 0, 38, 1);
   path {
     fill: white;
     fill-opacity: 0.8;
+    cursor: pointer;
     
     &.vorgehen_0 { fill: $YlOrRd-1 }
     &.vorgehen_2, &.vorgehen_5 { fill: $YlOrRd-3 }
