@@ -229,9 +229,9 @@ $ ->
   # Setup map
   map = po.map()
   .container(document.getElementById("map").appendChild(po.svg("svg")))
-  .center({lon: 8.596677185140349, lat: 46.77841693384364})
+  .center({lon: 8.231944, lat: 46.798333})
   .zoom(8)
-  .zoomRange([6,18])
+  .zoomRange([8,14])
   .add(po.interact())
   .on("move", moveTooltips)
   .on("resize", moveTooltips)
