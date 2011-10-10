@@ -30,7 +30,6 @@ To Do
 * Probably optimize the code a little
 * Check content of description page (dead download links etc.)
 * Put Fork Me Badge on description page
-* License!
 
 Data Sources
 ============
@@ -111,3 +110,10 @@ Vorgehen-Codes
 6: Untersuchungsbedarf: Detailuntersuchung erforderlich  
 7: Umwelteinwirkungen: der Standort muss saniert werden  
 8: teilsaniert: Umwelteinwirkungen unterbunden oder reduziert
+
+License
+=======
+
+Source Code is BSD-licensed (see file LICENSE).
+
+Any other work is licensed under a [Creative Commons Attribution 3.0 Unported License](http://creativecommons.org/licenses/by/3.0/).
