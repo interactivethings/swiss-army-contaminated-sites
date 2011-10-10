@@ -33,22 +33,21 @@ iconPaths =
 # Polymaps Stylist Event Handlers
 
 styleFeatures = po.stylist()
-  .attr("r", radius)
   .attr("class", (d) -> "vorgehen_#{d.properties.data['Vorgehen_Code']}")
 
 styleCounties = po.stylist()
-  .attr("class", "county")
-  .style("fill", (d) ->
-    step = maxZustand/6
+  .attr("class", (d) ->
     z = d.properties.Zustand || 0
     
-    if z == 0 then return "none"
-    if z < step then return "rgba(255, 255, 178, 1)"
-    if z < 2*step then return "rgba(254, 217, 118, 1)"
-    if z < 3*step then return "rgba(254, 178, 76, 1)"
-    if z < 4*step then return "rgba(253, 141, 60, 1)"
-    if z < 5*step then return "rgba(240, 59, 32, 1)"
-    if z < 6*step then return "rgba(189, 0, 38, 1)"
+    # console.log "#{d.properties.NAME}: #{d.properties.Zustand || 0}"
+    
+    if z == 0 then return "level_0"
+    if z == 1 then return "level_1"
+    if z <= 5 then return "level_2"
+    if z <= 10 then return "level_3"
+    if z <= 15 then return "level_4"
+    if z <= 20 then return "level_5"
+    return "level_6"
   )
 
 loadCounties = (e) ->
@@ -215,8 +214,8 @@ showLocations = (e) ->
   
   
 toggleLegends = (e) ->
-  $('#counties').fadeToggle();
-  $('#locations').fadeToggle();
+  $('#legend_counties').fadeToggle();
+  $('#legend_locations').fadeToggle();
 
 
 # DOM Loaded:
@@ -258,8 +257,9 @@ $ ->
   $.getJSON "media/maps/schweiz_gemeinden_geojson_bereinigt.json", (countyData) ->
     
     map.add po.geoJson()
+      .id("layer_counties")
       .features(countyData.features)
-      .on("show", styleCounties)
+      .on("load", styleCounties)
       .on("load", loadCounties)
       
     # console.log p
@@ -281,16 +281,17 @@ $ ->
             data: row
             
       map.add po.geoJson()
+        .id("layer_locations")
         .on("load", loadMarkers)
         .on("load", loadTooltips)
-        .on("show", styleFeatures)
+        .on("load", styleFeatures)
         .on("show", showTooltips)
         .features(features)
         
       map.add po.compass()
       .pan("none")
       
-      $('#locations').fadeToggle();
+      $('#legend_locations').fadeToggle();
   
   
   # Set up view change event handlers

@@ -9,8 +9,8 @@ $YlOrRd-4: rgba(253, 141, 60, 1);
 $YlOrRd-5: rgba(240, 59, 32, 1);
 $YlOrRd-6: rgba(189, 0, 38, 1);
 
-.layer {
-  .county {
+#layer_counties {
+  path {
     fill-opacity: 0;
     stroke: #000;
     stroke-width: 1px;
@@ -19,44 +19,39 @@ $YlOrRd-6: rgba(189, 0, 38, 1);
     #map.show_counties & {
       fill: white;
       fill-opacity: 0.8;
+      
+      &.level_1 { fill: $YlOrRd-1 }
+      &.level_2 { fill: $YlOrRd-2 }
+      &.level_3 { fill: $YlOrRd-3 }
+      &.level_4 { fill: $YlOrRd-4 }
+      &.level_5 { fill: $YlOrRd-5 }
+      &.level_6 { fill: $YlOrRd-6 }
     }
   }
+}
+
+#layer_locations {
   path {
     fill: white;
-    fill-opacity: .8;
+    fill-opacity: 0.8;
     
-    &.vorgehen_0 {
-      fill: $YlOrRd-1;
-      }
-    &.vorgehen_2 {
-      fill: $YlOrRd-3;
-    }
-    &.vorgehen_3 {
-      fill: $YlOrRd-4;
-    }
-    &.vorgehen_5 {
-      fill: $YlOrRd-3;
-    }
-    &.vorgehen_6 {
-      fill: $YlOrRd-5;
-    }
-    &.vorgehen_7 {
-      fill: $YlOrRd-6;
-    }
-    &.vorgehen_8 {
-      fill: $YlOrRd-2;
-    }
+    &.vorgehen_0 { fill: $YlOrRd-1 }
+    &.vorgehen_2, &.vorgehen_5 { fill: $YlOrRd-3 }
+    &.vorgehen_3 { fill: $YlOrRd-4 }
+    &.vorgehen_6 { fill: $YlOrRd-5 }
+    &.vorgehen_7 { fill: $YlOrRd-6 }
+    &.vorgehen_8 { fill: $YlOrRd-2 }
     
     #map.show_counties & {
-      fill: black;
+       fill: black;
+       fill-opacity: 0.5;
     }
-    
   }
   
   .icon path {
     fill: black !important;
     fill-opacity: 1 !important;
-    
+
     #map.show_counties & {
       fill: white !important;
     }
@@ -176,7 +171,7 @@ $YlOrRd-6: rgba(189, 0, 38, 1);
       }
     }
   }
-  &#locations{
+  &#legend_locations{
     display: none;
     span.label{
       width: 100% / 7 * 1 - 1%;
@@ -206,7 +201,7 @@ $YlOrRd-6: rgba(189, 0, 38, 1);
       }
     }
   }
-  &#counties{
+  &#legend_counties{
     display: none;
     bottom: 46px;
     span.label{
