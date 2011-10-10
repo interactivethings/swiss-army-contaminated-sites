@@ -134,6 +134,15 @@ updateTooltip = (tip) ->
   tip.anchor.style.left = p.x - radius + "px"
   tip.anchor.style.top = p.y - 20 + "px"
   $(tip.anchor).tipsy("show")
+  
+closeTooltip = (tip) ->
+  return unless tip.visible
+  tip.visible = false
+  $(tip.anchor).tipsy("hide")
+  
+closeAllTooltips = (exceptTip) ->
+  for id,t of tips
+    closeTooltip(t) if t isnt exceptTip
 
 toggleTooltip = (f) ->
   tip = tips[f.id]
@@ -146,10 +155,7 @@ toggleTooltip = (f) ->
         if tip.visible
           updateTooltip(tip)
           $(tip.anchor).tipsy("show")
-          for id,t of tips
-            if t isnt tip
-              t.visible = false
-              $(t.anchor).tipsy("hide")
+          closeAllTooltips(tip)
         else
           $(tip.anchor).tipsy("hide")
         cancelTooltip(e)
@@ -308,6 +314,7 @@ $ ->
   $('#show_locations').click(showLocations)
   $('#show_counties').click(showCounties)
   $('.teaser').fitted()
+  $('.tipsy').live('mousedown', (e) -> closeAllTooltips())
   
   $(window).resize resizeMap
   resizeMap()
