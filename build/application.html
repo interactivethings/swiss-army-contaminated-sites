@@ -18,8 +18,8 @@
   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/app/images/touch_icon_ipad.png">
   <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/app/images/touch_icon_iphone4.png">
   <!-- ——————————————————————————————————————————————————————————————————— CSS -->
-  <link type="text/css" href="assets/app/stylesheets/style.css" media="screen" rel="stylesheet" />
-  <link type="text/css" href="assets/vendor/polymaps/lib/tipsy/tipsy.css" rel="stylesheet" />
+  <link type="text/css" rel="stylesheet" href="assets/app/stylesheets/style.css" media="screen" />
+  <link rel="stylesheet" type="text/css" href="assets/vendor/polymaps/lib/tipsy/tipsy.css" />
   <!-- ——————————————————————————————————————————————————————————————————— JS -->
   <script type="text/javascript" src="assets/vendor/modernizr/modernizr-2.0.6.min.js"></script>
   <script type="text/javascript" src="http://use.typekit.com/nkw6rrg.js"></script>
@@ -36,7 +36,7 @@
         <li class='active'><a href='application.html'>Swiss Army Contaminated Sites</a></li>
       </ul>
         <div id='filter_toggle'>
-          <span class='label'>Filter:</span><ul class='filter'>
+          <span class='label'>Zeige:</span><ul class='filter'>
           <li><a href='#locations' id='show_locations' data-filter='.locations' title='Standorte' class='active'>Standorte</a></li>
           <li><a href='#counties' id='show_counties' data-filter='.counties' title='Gemeinden'>Gemeinden</a></li>
         </ul></div>
@@ -48,8 +48,8 @@
   </div>
 </div>
   <div id="map">
-  <div id="locations" class="legend_overlay">
-    <span class="label">Belastung</span>
+  <div id="legend_locations" class="legend_overlay">
+    <span class="label">Standortbelastung</span>
     <ul class="legend">
       <li>
         <span class="cause">nicht definiert</span>
@@ -57,7 +57,7 @@
       </li>
       <li>
         <span class="cause">unterbunden oder reduziert</span>
-        <span class="action">Teilsaniert</span>
+        <span class="action">teilsaniert</span>
       </li>
       <li>
         <span class="cause">mit Abfällen belastet</span>
@@ -65,11 +65,11 @@
       </li>
       <li>
         <span class="cause">möglich</span>
-        <span class="action">Voruntersuchung</span>
+        <span class="action">Voruntersuchung nötig</span>
       </li>
       <li>
         <span class="cause">möglich</span>
-        <span class="action">Detailuntersuchung</span>
+        <span class="action">Detailuntersuchung nötig</span>
       </li>
       <li>
         <span class="cause">definiert</span>
@@ -77,26 +77,26 @@
       </li>
     </ul>
   </div>
-  <div id="counties" class="legend_overlay">
-    <span class="label">Belastung</span>
+  <div id="legend_counties" class="legend_overlay">
+    <span class="label">Standorte pro Gemeinde</span>
     <ul class="legend">
       <li>
-        <span class="cause">sehr gering</span>
+        <span class="cause">1</span>
       </li>
       <li>
-        <span class="cause">gering</span>
+        <span class="cause">bis 5</span>
       </li>
       <li>
-        <span class="cause">mittel 1</span>
+        <span class="cause">bis 10</span>
       </li>
       <li>
-        <span class="cause">mittel 2</span>
+        <span class="cause">bis 15</span>
       </li>
       <li>
-        <span class="cause">hoch</span>
+        <span class="cause">bis 20</span>
       </li>
       <li>
-        <span class="cause">sehr hoch</span>
+        <span class="cause">über 20</span>
       </li>
     </ul>
   </div>

@@ -18,26 +18,26 @@
   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/app/images/touch_icon_ipad.png">
   <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/app/images/touch_icon_iphone4.png">
   <!-- ——————————————————————————————————————————————————————————————————— CSS -->
-  <link type="text/css" href="assets/app/stylesheets/style.css" media="screen" rel="stylesheet" />
-  <link type="text/css" href="assets/vendor/polymaps/lib/tipsy/tipsy.css" rel="stylesheet" />
+  <link type="text/css" rel="stylesheet" href="assets/app/stylesheets/style.css" media="screen" />
+  <link rel="stylesheet" type="text/css" href="assets/vendor/polymaps/lib/tipsy/tipsy.css" />
   <!-- ——————————————————————————————————————————————————————————————————— JS -->
   <script type="text/javascript" src="assets/vendor/modernizr/modernizr-2.0.6.min.js"></script>
   <script type="text/javascript" src="http://use.typekit.com/nkw6rrg.js"></script>
   <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 </head>
-<body class="home">
+<body class="index">
   <div id="header" class="container">
   <div class="static_wrapper">
   <div class="row">
     <div id="navigation" class="twelvecol">
-      <h1 class='active'><a href="http://interactivethings.com/">Interactive Things</a></h1>
+      <h1 ><a href="http://interactivethings.com/">Interactive Things</a></h1>
       <ul>
-        <li><a href='index.html'>Description</a></li>
+        <li class='active'><a href='index.html'>Description</a></li>
         <li><a href='application.html'>Swiss Army Contaminated Sites</a></li>
       </ul>
         
 
-      <span class='contact'><a href='http://interactivethings.com/contact'>Contact</a>
+      
         
     </div>
   </div>
@@ -57,7 +57,7 @@
         <dt>Context</dt>
         <dd>Make.OpenData.ch Camp</dd>
         <dt>Date</dt>
-        <dd>01. October 2011</dd>
+        <dd>Sep 30th – Oct 1st 2011</dd>
       </dl>
     </div>
     <div class="fourcol">
@@ -71,7 +71,7 @@
 <div class="container teasers">
   <div class="row top">
     <div class="twelvecol">
-      <h2>Deliverable</h2>
+      <h2>Application</h2>
     </div>
   </div>
   <div class="row">
@@ -90,17 +90,43 @@
   <div class="row bottom">
     <div class="fourcol">
       <h3 class="icon documentation">Documentation</h3>
-      <p>You can find all project relevant documents and files on this website. If there is something you miss, please don't hesitate to contact us.</p>
+      <p>Design documentation is on the <a href="http://makeopendata.ch/doku.php?id=project:swiss_army_contaminated_sites">make.opendata.ch Wiki</a></p>
+      <p>For implementation details and license, please refer to the <a href="https://github.com/interactivethings/swiss-army-contaminated-sites/blob/master/README.md">README document</a>.</p>
+      <h4>Interactive Things' Contributors</h4>
+      <ul>
+        <li>Benjamin Wiederkehr (map &amp; UI coding)</li>
+        <li>Christian Siegrist (UI design)    </li>
+        <li>Christoph Schmid (UI &amp; icon design)</li>
+        <li>Peter Gassner (data analysis &amp; wrangling, QGIS taming)</li>
+        <li>Jeremy Stucki (data analysis, map &amp; UI coding)</li>
+        <li>Flavio Gortana (icon design)</li>
+      </ul>
+      <h4>Other Contributors</h4>
+      <ul>
+        <li>Alexander Bernbauer (last-minute data wrangling!)</li>
+        <li>Lorenz ? (helped with ideas, some data analysis)</li>
+      </ul>
     </div>
     <div class="fourcol">
       <h3 class="icon technology">Technology</h3>
-      <p>The prototype was built completely in HTML and Javascript. To run it, just open index.html in a browser, no webserver is necessary.</p>
+      <p>Some libraries, tools and services we used:</p>
+      <ul>
+        <li><a href="http://compass-style.org/" title="Compass Home | Compass Documentation">Compass</a></li>
+        <li><a href="http://jashkenas.github.com/coffee-script/" title="CoffeeScript">CoffeeScript</a></li>
+        <li><a href="http://www.swisstopo.admin.ch/internet/swisstopo/en/home/apps/calc/navref.html" title="swisstopo: NAVREF">NavRef</a></li>
+        <li><a href="http://www.swisstopo.admin.ch/internet/swisstopo/en/home/products/software/products/skripts.html" title="">Scripts for WGS84&lt;-&gt;CH1903</a></li>
+        <li><a href="http://code.google.com/p/google-refine/" title="google-refine - Google Refine, a power tool for working with messy data (formerly Freebase Gridworks) - Google Project Hosting">Google Refine</a></li>
+        <li><a href="http://www.qgis.org/" title="Welcome to the Quantum GIS Project">QGIS</a></li>
+        <li><a href="http://polymaps.org/" title="Polymaps">Polymaps</a></li>
+        <li><a href="http://cloudmade.com/" title="CloudMade - The Leading Platform for Creating and Monetizing Unique Applications With Location">CloudMade</a></li>
+      </ul>
+      
+      
     </div>
     <div class="fourcol last">
       <h3 class="icon download">Download</h3>
       <p>
-        <a href="https://github.com/interactivethings/swiss-army-contaminated-sites" title="Swiss Army Contaminated Sites on GitHub">Source Code</a>
-      </p>
+        <a href="https://github.com/interactivethings/swiss-army-contaminated-sites" title="Swiss Army Contaminated Sites on GitHub">Source Code</a> on GitHub<br /><a href="https://www.oeffentlichkeitsgesetz.ch/downloads/befreite-dokumente/5/2009_12_18_VBS_Datensammlung%20Belastete_Standorte.xls">Data</a> from <a href="https://www.oeffentlichkeitsgesetz.ch/deutsch/befreite-dokumente/?departement=5">Öffentlichkeitsgesetz.ch</a></p>
     </div>
   </div>
 </div>
