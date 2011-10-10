@@ -84,18 +84,22 @@ def check_consistency(municipals, sites):
     print "no municipal with GMDE code", code, "and name", name
 
 
-severity_map = {
-  0:  0, # Nicht definiert
-  2:  5, # mit Abfällen belastet, kein dringender Untersuchungsbedarf
-  3:  2, # Untersuchungsbedarf: Voruntersuchung erforderlich
-  5:  5, # mit Abfällen belastet, kein dringender Untersuchungs- bzw. Sanierungsbedarf
-  6:  7, # Untersuchungsbedarf: Detailuntersuchung erforderlich
-  7: 10, # Umwelteinwirkungen: der Standort muss saniert werden
-  8:  5, # teilsaniert: Umwelteinwirkungen unterbunden oder reduziert
-}
+# severity_map = {
+#   0:  0, # Nicht definiert
+#   2:  5, # mit Abfällen belastet, kein dringender Untersuchungsbedarf
+#   3:  2, # Untersuchungsbedarf: Voruntersuchung erforderlich
+#   5:  5, # mit Abfällen belastet, kein dringender Untersuchungs- bzw. Sanierungsbedarf
+#   6:  7, # Untersuchungsbedarf: Detailuntersuchung erforderlich
+#   7: 10, # Umwelteinwirkungen: der Standort muss saniert werden
+#   8:  5, # teilsaniert: Umwelteinwirkungen unterbunden oder reduziert
+# }
 
 def add_severity(current_state, severity):  
-  return current_state + severity_map[severity]
+  # Just count the locations:
+  return current_state + 1
+  
+  # Adjust by severity (don't forget to adjust choropleth map)
+  # return current_state + severity_map[severity]
 
 def augment_municipals(municipals, sites):
   for site in sites.values():

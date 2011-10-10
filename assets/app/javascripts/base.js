@@ -1,5 +1,5 @@
 (function() {
-  var $, cancelTooltip, iconPaths, loadCounties, loadMarkers, loadTooltips, map, maxZustand, moveTooltips, po, radius, showCounties, showLocations, showTooltips, styleCounties, styleFeatures, tips, toggleLegends, toggleTooltip, updateTooltip;
+  var $, cancelTooltip, closeAllTooltips, closeTooltip, iconPaths, loadCounties, loadMarkers, loadTooltips, map, maxZustand, moveTooltips, po, radius, resizeMap, showCounties, showLocations, showTooltips, styleCounties, styleFeatures, tips, toggleLegends, toggleTooltip, updateTooltip;
   $ = jQuery;
   po = org.polymaps;
   radius = 5;
@@ -12,34 +12,31 @@
     unfall: ['M-7.388-9.848l5.148,0.533l0.69,4.175l1.621-4.269l4.909,1.82l-2.623-2.936l5.03-1.146L2.5-13.019l1.993-3.375l-4.159,2.02l-2.637-3.259c0,0-0.614,4.967-0.697,5.092S-7.388-9.848-7.388-9.848z'],
     schiessplatz: ['M3.507-12.145h1.084h0.381h0.379c-0.179-2.559-2.226-4.61-4.783-4.796v0.379v0.381v1.085C2.111-14.921,3.338-13.689,3.507-12.145z', 'M-3.124-11.389h-1.088h-0.38H-4.97c0.191,2.547,2.233,4.584,4.782,4.769v-0.378V-7.38v-1.085C-1.722-8.639-2.944-9.855-3.124-11.389z', 'M0.568-14.332v2.188h2.176C2.583-13.272,1.693-14.166,0.568-14.332z', 'M-0.188-9.228v-2.161H-2.36C-2.189-10.273-1.305-9.393-0.188-9.228z', 'M-2.364-12.145h2.176v-2.188C-1.314-14.166-2.204-13.272-2.364-12.145z', 'M2.739-11.389H0.568v2.161C1.684-9.393,2.569-10.273,2.739-11.389z', 'M-4.973-12.145h0.379h0.382h1.085c0.169-1.545,1.396-2.776,2.939-2.951v-1.085v-0.381v-0.379C-2.746-16.755-4.793-14.703-4.973-12.145z', 'M4.589-11.389H3.502c-0.181,1.533-1.4,2.75-2.935,2.925v1.084v0.382v0.379c2.548-0.186,4.59-2.223,4.781-4.77H4.97H4.589L4.589-11.389z']
   };
-  styleFeatures = po.stylist().attr("r", radius).attr("class", function(d) {
+  styleFeatures = po.stylist().attr("class", function(d) {
     return "vorgehen_" + d.properties.data['Vorgehen_Code'];
   });
-  styleCounties = po.stylist().attr("class", "county").style("fill", function(d) {
-    var step, z;
-    step = maxZustand / 6;
+  styleCounties = po.stylist().attr("class", function(d) {
+    var z;
     z = d.properties.Zustand || 0;
     if (z === 0) {
-      return "none";
+      return "level_0";
     }
-    if (z < step) {
-      return "rgba(255, 255, 178, 1)";
+    if (z === 1) {
+      return "level_1";
     }
-    if (z < 2 * step) {
-      return "rgba(254, 217, 118, 1)";
+    if (z <= 5) {
+      return "level_2";
     }
-    if (z < 3 * step) {
-      return "rgba(254, 178, 76, 1)";
+    if (z <= 10) {
+      return "level_3";
     }
-    if (z < 4 * step) {
-      return "rgba(253, 141, 60, 1)";
+    if (z <= 15) {
+      return "level_4";
     }
-    if (z < 5 * step) {
-      return "rgba(240, 59, 32, 1)";
+    if (z <= 20) {
+      return "level_5";
     }
-    if (z < 6 * step) {
-      return "rgba(189, 0, 38, 1)";
-    }
+    return "level_6";
   });
   loadCounties = function(e) {
     var f, _i, _len, _ref, _results;
@@ -163,6 +160,22 @@
     tip.anchor.style.top = p.y - 20 + "px";
     return $(tip.anchor).tipsy("show");
   };
+  closeTooltip = function(tip) {
+    if (!tip.visible) {
+      return;
+    }
+    tip.visible = false;
+    return $(tip.anchor).tipsy("hide");
+  };
+  closeAllTooltips = function(exceptTip) {
+    var id, t, _results;
+    _results = [];
+    for (id in tips) {
+      t = tips[id];
+      _results.push(t !== exceptTip ? closeTooltip(t) : void 0);
+    }
+    return _results;
+  };
   toggleTooltip = function(f) {
     var tip, tipContent, type_icon;
     tip = tips[f.id];
@@ -172,8 +185,13 @@
         visible: false,
         toggle: function(e) {
           tip.visible = !tip.visible;
-          updateTooltip(tip);
-          $(tip.anchor).tipsy(tip.visible ? "show" : "hide");
+          if (tip.visible) {
+            updateTooltip(tip);
+            $(tip.anchor).tipsy("show");
+            closeAllTooltips(tip);
+          } else {
+            $(tip.anchor).tipsy("hide");
+          }
           return cancelTooltip(e);
         }
       };
@@ -202,7 +220,7 @@
       $(tip.anchor).tipsy({
         fallback: tipContent,
         gravity: $.fn.tipsy.autoNS,
-        trigger: "manual",
+        trigger: "hover",
         html: true
       });
     }
@@ -225,32 +243,38 @@
     return toggleLegends();
   };
   toggleLegends = function(e) {
-    $('#counties').fadeToggle();
-    return $('#locations').fadeToggle();
+    $('#legend_counties').fadeToggle();
+    return $('#legend_locations').fadeToggle();
   };
-  $(function() {
+  resizeMap = function(e) {
     var $map, map_height, map_offset;
     $map = $("#map");
-    if ($map.length === 0) {
-      return;
-    }
-    map = po.map().container(document.getElementById("map").appendChild(po.svg("svg"))).center({
-      lon: 8.596677185140349,
-      lat: 46.77841693384364
-    }).zoom(8).zoomRange([6, 18]).add(po.interact()).on("move", moveTooltips).on("resize", moveTooltips);
-    map.add(po.image().url(po.url("http://{S}tile.cloudmade.com/1a1b06b230af4efdbb989ea99e9841af/45763/256/{Z}/{X}/{Y}.png").hosts(["a.", "b.", "c.", ""])));
     map_offset = $map.offset();
     map_height = $(window).height() - map_offset.top;
     $map.css({
       height: map_height,
       overflow: "hidden"
     });
-    $("body").css({
+    return $("body").css({
       height: map_height,
       overflow: "hidden"
     });
+  };
+  $(function() {
+    if ($('html.svg').length === 0) {
+      alert("Your Browser must support SVG. Please upgrade to a newer/other one.");
+      return;
+    }
+    if ($("#map").length === 0) {
+      return;
+    }
+    map = po.map().container(document.getElementById("map").appendChild(po.svg("svg"))).center({
+      lon: 8.231944,
+      lat: 46.798333
+    }).zoom(8).zoomRange([8, 14]).add(po.interact()).on("move", moveTooltips).on("resize", moveTooltips);
+    map.add(po.image().url(po.url("http://{S}tile.cloudmade.com/1a1b06b230af4efdbb989ea99e9841af/45763/256/{Z}/{X}/{Y}.png").hosts(["a.", "b.", "c.", ""])));
     $.getJSON("media/maps/schweiz_gemeinden_geojson_bereinigt.json", function(countyData) {
-      map.add(po.geoJson().features(countyData.features).on("show", styleCounties).on("load", loadCounties));
+      map.add(po.geoJson().id("layer_counties").features(countyData.features).on("load", styleCounties).on("load", loadCounties));
       return $.getJSON("media/data/vbs-belastete-standorte_bereinigt.json", function(locationData) {
         var features, i, row, _i, _len, _ref;
         i = 0;
@@ -270,13 +294,18 @@
             }
           });
         }
-        map.add(po.geoJson().on("load", loadMarkers).on("load", loadTooltips).on("show", styleFeatures).on("show", showTooltips).features(features));
+        map.add(po.geoJson().id("layer_locations").on("load", loadMarkers).on("load", loadTooltips).on("load", styleFeatures).on("show", showTooltips).features(features));
         map.add(po.compass().pan("none"));
-        return $('#locations').fadeToggle();
+        return $('#legend_locations').fadeToggle();
       });
     });
     $('#show_locations').click(showLocations);
     $('#show_counties').click(showCounties);
-    return $('.teaser').fitted();
+    $('.teaser').fitted();
+    $('.tipsy').live('mousedown', function(e) {
+      return closeAllTooltips();
+    });
+    $(window).resize(resizeMap);
+    return resizeMap();
   });
 }).call(this);
