@@ -22,15 +22,6 @@ Other Contributors
 * Alexander Bernbauer (last-minute data wrangling!)
 * Lorenz ? (helped with ideas, some data analysis)
 
-To Do
-=====
-
-* Double-check county map!
-* Improve tooltip behavior
-* Probably optimize the code a little
-* Check content of description page (dead download links etc.)
-* Put Fork Me Badge on description page
-
 Data Sources
 ============
 
